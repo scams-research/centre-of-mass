@@ -1,56 +1,59 @@
 % Define document class
-\documentclass[twocolumn]{aastex631}
+\documentclass[reprint,superscriptaddress,nobibnotes,amsmath,amssymb,aps,hidelinks]{revtex4-2}
 \usepackage{showyourwork}
+\usepackage[version=4]{mhchem}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{siunitx}
+\sisetup{list-units=bracket,
+         list-final-separator={, and },
+         range-units=bracket,
+         range-phrase={, },
+         uncertainty-mode=separate
+         }
+\usepackage{lipsum}
+\newcommand{\papertitle}{An Algorithm To Improve Centre of Mass Estimation in Periodic Systems}
+\usepackage[noabbrev,nameinlink,capitalize]{cleveref}
+\crefname{equation}{Eqn.}{Eqns.}
+\crefformat{equation}{Eqn.~#2#1#3}
+\crefrangeformat{equation}{Eqns.~#3#1#4 to~#5#2#6}
+\crefmultiformat{equation}{Eqns.~#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
+\crefname{figure}{Fig.}{Figs.}
 
-% Begin!
+\renewcommand\appendixname{}
+
+\makeatletter
+\def\maketitle{
+\@author@finish
+\title@column\titleblock@produce
+\suppressfloats[t]}
+\makeatother
+
 \begin{document}
 
-% Title
-\title{An open source scientific article}
+\let\oldaddcontentsline\addcontentsline
+\renewcommand{\addcontentsline}[3]{}
 
-% Author list
-\author{@scams-research}
+\title{\papertitle}
 
-% Abstract with filler text
+\author{Harry Richardson}
+  \affiliation{Centre for Computational Chemistry, School of Chemistry, University of Bristol, Cantock's Close, Bristol, BS8 1TS, UK.}
+\author{Josh Dunn}
+  \affiliation{Centre for Computational Chemistry, School of Chemistry, University of Bristol, Cantock's Close, Bristol, BS8 1TS, UK.}
+\author{Andrew R. McCluskey}
+\email{andrew.mccluskey@bristol.ac.uk}
+  \affiliation{Centre for Computational Chemistry, School of Chemistry, University of Bristol, Cantock's Close, Bristol, BS8 1TS, UK.}
+  \affiliation{European Spallation Source ERIC, Data Management and Software Centre, Asmussens Allé 305, DK-2800 Kongens Lyngby, DK.}
+  \affiliation{Diamond Light Source, Harwell Campus, Didcot, OX11 0DE, UK.}
+
 \begin{abstract}
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
-    Curabitur dictum gravida mauris, consectetuer id, vulputate a, magna.
-    Donec vehicula augue eu neque, morbi tristique senectus et netus et.
-    Mauris ut leo, cras viverra metus rhoncus sem, nulla et lectus vestibulum.
-    Phasellus eu tellus sit amet tortor gravida placerat.
-    Integer sapien est, iaculis in, pretium quis, viverra ac, nunc.
-    Praesent eget sem vel leo ultrices bibendum.
-    Aenean faucibus, morbi dolor nulla, malesuada eu, pulvinar at, mollis ac.
-    Curabitur auctor semper nulla donec varius orci eget risus.
-    Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam.
-    Duis eget orci sit amet orci dignissim rutrum.
+\lipsum[1]
 \end{abstract}
 
-% Main body with filler text
+\maketitle
+
 \section{Introduction}
 \label{sec:intro}
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
-Curabitur dictum gravida mauris, consectetuer id, vulputate a, magna.
-Donec vehicula augue eu neque, morbi tristique senectus et netus et.
-Mauris ut leo, cras viverra metus rhoncus sem, nulla et lectus vestibulum.
-Phasellus eu tellus sit amet tortor gravida placerat.
-Integer sapien est, iaculis in, pretium quis, viverra ac, nunc.
-Praesent eget sem vel leo ultrices bibendum.
-Aenean faucibus, morbi dolor nulla, malesuada eu, pulvinar at, mollis ac.
-Curabitur auctor semper nulla donec varius orci eget risus.
-Duis nibh mi, congue eu, accumsan eleifend, sagittis quis, diam.
-Duis eget orci sit amet orci dignissim rutrum.
-
-Nam dui ligula, fringilla a, euismod sodales, sollici- tudin vel, wisi.
-Morbi auctor lorem non justo, nam lacus libero, pretium at, lobortis vitae.
-Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna.
-Morbi ac orci et nisl hendrerit mollis, suspendisse ut massa, cras nec ante.
-Pellentesque a nulla cum sociis natoque penatibus et magnis dis parturient.
-Aliquam tincidunt urna, nulla ullamcorper vestibulum turpis.
-Pellentesque cursus luctus mauris \citep{Luger2021}.
 
 \bibliography{bib}
 
