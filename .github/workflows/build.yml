@@ -20,3 +20,5 @@ jobs:
         env:
           SANDBOX_TOKEN: ${{ secrets.SANDBOX_TOKEN }}
           OVERLEAF_TOKEN: ${{ secrets.OVERLEAF_TOKEN }}
+        with:
+          showyourwork-spec: git+https://github.com/showyourwork/showyourwork
