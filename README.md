@@ -12,8 +12,7 @@
 - [ ] Send paper to Richard Gowers for comment (@jd15489)
 - [ ] Add scripts and ensure reproducibility (@Harry-Rich)
 - [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
-- [ ] Open PR in `MDAnalysis` (@Harry-Rich)
-- [ ] Include references to `kinisi` and `MDAnalysis` in text
+- [ ] Include references to `kinisi` in text
 - [ ] Final approval of paper (include [CRediT taxonomy](https://credit.niso.org) at this stage):
   - [ ] @arm61
   - [ ] @Harry-Rich
@@ -21,5 +20,8 @@
 - [ ] Ensure that the GitHub repository is ready for release
 - [ ] Make GitHub repository public
 - [ ] Article on arXiv
+- [ ] Open PR in `MDAnalysis` (@Harry-Rich)
+- [ ] PR accepted in `MDAnalysis` (@Harry-Rich)
+- [ ] Include references to `MDAnalysis` in text
 - [ ] Write cover letter
 - [ ] Submit to journal
