@@ -18,6 +18,8 @@
   - [ ] @arm61
   - [ ] @Harry-Rich
   - [ ] @jd15489
+- [ ] Ensure that the GitHub repository is ready for release
+- [ ] Make GitHub repository public
 - [ ] Article on arXiv
 - [ ] Write cover letter
 - [ ] Submit to journal
