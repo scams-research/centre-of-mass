@@ -1,18 +1,23 @@
-<p align="center">
-<a href="https://github.com/showyourwork/showyourwork">
-<img width = "450" src="https://raw.githubusercontent.com/showyourwork/.github/main/images/showyourwork.png" alt="showyourwork"/>
-</a>
-<br>
-<br>
-<a href="https://github.com/scams-research/centre-of-mass/actions/workflows/build.yml">
-<img src="https://github.com/scams-research/centre-of-mass/actions/workflows/build.yml/badge.svg?branch=main" alt="Article status"/>
-</a>
-<a href="https://github.com/scams-research/centre-of-mass/raw/main-pdf/arxiv.tar.gz">
-<img src="https://img.shields.io/badge/article-tarball-blue.svg?style=flat" alt="Article tarball"/>
-</a>
-<a href="https://github.com/scams-research/centre-of-mass/raw/main-pdf/ms.pdf">
-<img src="https://img.shields.io/badge/article-pdf-blue.svg?style=flat" alt="Read the article"/>
-</a>
-</p>
+# centre-of-mass
 
-An open source scientific article created using the [showyourwork](https://github.com/showyourwork/showyourwork) workflow.
+## TODO List
+
+- [ ] First draft of full paper; with figures and text (@Harry-Rich)
+- [ ] Review of first draft (@arm61)
+- [ ] Iteration of text (@all) -- target journal is [Journal of Chemical Physics](https://pubs.aip.org/aip/jcp) (subject to change)
+- [ ] Initial approval of paper:
+  - [ ] @arm61
+  - [ ] @Harry-Rich
+  - [ ] @jd15489
+- [ ] Send paper to Richard Gowers for comment (@jd15489)
+- [ ] Add scripts and ensure reproducibility (@Harry-Rich)
+- [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
+- [ ] Open PR in `MDAnalysis` (@Harry-Rich)
+- [ ] Include references to `kinisi` and `MDAnalysis` in text
+- [ ] Final approval of paper (include [CRediT taxonomy](https://credit.niso.org) at this stage):
+  - [ ] @arm61
+  - [ ] @Harry-Rich
+  - [ ] @jd15489
+- [ ] Article on arXiv
+- [ ] Write cover letter
+- [ ] Submit to journal
