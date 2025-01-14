@@ -2,9 +2,9 @@
 
 ## TODO List
 
-- [ ] First draft of full paper; with figures and text (@Harry-Rich)
-- [ ] Review of first draft (@arm61)
-- [ ] Iteration of text (@all) -- target journal is [Journal of Chemical Physics](https://pubs.aip.org/aip/jcp) (subject to change)
+- [x] First draft of full paper; with figures and text (@Harry-Rich)
+- [x] Review of first draft (@arm61)
+- [x] Iteration of text (@all) -- target journal is [Journal of Chemical Physics](https://pubs.aip.org/aip/jcp) (subject to change)
 - [ ] Initial approval of paper:
   - [ ] @arm61
   - [ ] @Harry-Rich
