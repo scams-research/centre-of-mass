@@ -12,7 +12,7 @@
 - [ ] Send paper to Richard Gowers for comment (@jd15489)
 - [ ] Add scripts and ensure reproducibility (@Harry-Rich)
 - [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
-- [ ] Include references to `kinisi` in text (@Harry-Rich)
+- [x] Include references to `kinisi` in text (@Harry-Rich)
 - [ ] Final approval of paper (include [CRediT taxonomy](https://credit.niso.org) at this stage):
   - [ ] @arm61
   - [ ] @Harry-Rich
