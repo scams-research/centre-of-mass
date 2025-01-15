@@ -13,7 +13,8 @@
 - [ ] Add scripts and ensure reproducibility (@Harry-Rich)
 - [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
 - [x] Include references to `kinisi` in text (@Harry-Rich)
-- [ ] Final approval of paper (include [CRediT taxonomy](https://credit.niso.org) at this stage):
+- [x] Include [CRediT taxonomy](https://credit.niso.org)
+- [ ] Final approval of paper:
   - [ ] @arm61
   - [ ] @Harry-Rich
   - [ ] @jd15489
