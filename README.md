@@ -6,7 +6,7 @@
 - [x] Review of first draft (@arm61)
 - [x] Iteration of text (@all) -- target journal is [Journal of Chemical Physics](https://pubs.aip.org/aip/jcp) (subject to change)
 - [ ] Initial approval of paper:
-  - [ ] @arm61
+  - [x] @arm61
   - [ ] @Harry-Rich
   - [ ] @jd15489
 - [ ] Send paper to Richard Gowers for comment (@jd15489)
