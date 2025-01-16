@@ -24,6 +24,6 @@
 - [ ] Open PR in `MDAnalysis` (@Harry-Rich)
 - [ ] PR accepted in `MDAnalysis` (@Harry-Rich)
 - [ ] Include references to `MDAnalysis` in text (@Harry-Rich)
-- [ ] Put in [JCP Template](https://www.overleaf.com/latex/templates/template-for-submission-to-aip-journals/wdmsvzfjgvyj)
+- [x] Put in [JCP Template](https://www.overleaf.com/latex/templates/template-for-submission-to-aip-journals/wdmsvzfjgvyj)
 - [ ] Write cover letter (@arm61)
 - [ ] Submit to journal (@arm61)
