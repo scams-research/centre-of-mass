@@ -1,7 +1,7 @@
 dependencies:
-  - conda-forge::numpy=1.19.2
+  - numpy=2.2.2
   - conda-forge::pip=21.0.1
-  - conda-forge::python=3.10
+  - python=3.10
   - mdanalysis=2.8.0
   - pip:
       - matplotlib==3.4.3
