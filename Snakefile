@@ -1,9 +1,9 @@
-rule glswlsols:
+rule sampling:
     input:
-        "src/code/sampling.py"
+        "src/scripts/sampling.py"
     output:
         "src/data/Fig3.npy"
     conda:
         "environment.yml"
     script:
-        "src/code/sampling.py"
+        "src/scripts/sampling.py"
