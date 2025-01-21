@@ -90,5 +90,5 @@ ax0.scatter(-20,-20, s=s_set, color = '#029E73', marker = 'x', label = 'True COM
 
 
 ax0.spines['top'].set_visible(False)
-plt.savefig(paths.figures / 'Fig3.pdf')
+plt.savefig(paths.figures / 'Fig2.pdf')
 plt.close()
