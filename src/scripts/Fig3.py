@@ -3,30 +3,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from scipy.stats import uniform
 import matplotlib as matplotlib
-
-# Function definitions 
-def pi_centrer(coords,weights,box_min, box_width):
-    """
-    Calculates the centre of mass of a given set of coordinates and masses according to the bai and breen method.
-    
-    Parameters:
-        coords (np.array): 1d array of particle coordinates
-        weights (np.array): 1d array of particle masses
-        box_min (float): Minimum x-coordinate of the box.
-        box_width (float): Width of the box
-
-    """
-    frac_coords = (coords - box_min) / box_width
-    theta = frac_coords * (2 * np.pi) 
-    xi = np.cos(theta)
-    zeta = np.sin(theta)
-    xi_bar = np.average(xi,weights=weights)
-    zeta_bar = np.average(zeta,weights=weights)
-    theta_bar = np.arctan2(-zeta_bar, -xi_bar) + np.pi
-    new_s_coords = (theta_bar) / (2 * np.pi)
-    new_s_coords = new_s_coords*box_width + box_min
-
-    return new_s_coords
+from Functions import pi_centrer
 
 # Main
 m = int(2 ** 24) 

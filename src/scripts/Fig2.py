@@ -9,114 +9,8 @@ from MDAnalysis.transformations.boxdimensions import set_dimensions
 import matplotlib.gridspec as gridspec
 import matplotlib as matplotlib
 import matplotlib.patches as patches
-
-# Function definitions 
-def pi_centrer(coords,weights,box_min, box_width):
-    """
-    Calculates the centre of mass of a given set of coordinates and masses according to the bai and breen method.
-    
-    Parameters:
-        coords (np.array): 1d array of particle coordinates
-        weights (np.array): 1d array of particle masses
-        box_min (float): Minimum x-coordinate of the box.
-        box_width (float): Width of the box
-
-    """
-    frac_coords = (coords - box_min) / box_width
-    theta = frac_coords * (2 * np.pi) 
-    xi = np.cos(theta)
-    zeta = np.sin(theta)
-    xi_bar = np.average(xi,weights=weights)
-    zeta_bar = np.average(zeta,weights=weights)
-    theta_bar = np.arctan2(-zeta_bar, -xi_bar) + np.pi
-    new_s_coords = (theta_bar) / (2 * np.pi)
-    new_s_coords = new_s_coords*box_width + box_min
-
-    return new_s_coords
-
-
-def xi_zeta_calc(masses,coords, box_min = 0,box_width = 20):
-    """
-    Calculates the xi and zeta used within the bai and breen method.
-    
-    Parameters:
-        coords (np.array): 1d array of particle coordinates
-        weights (np.array): 1d array of particle masses
-        box_min (float): Minimum x-coordinate of the box.
-        box_width (float): Width of the box
-
-    """
-
-    frac_coords = (coords - box_min) / box_width 
-    theta = frac_coords * (2 * np.pi) + np.pi
-    xi = np.cos(theta)
-    zeta = np.sin(theta)
-    return xi, zeta, theta
-
-def xi_zeta_bar_calc(masses,coords, box_min = 0, box_width = 20):
-    """
-    Calculates the xi bar, zeta bar and theta bar used within the bai and breen method.
-    
-    Parameters:
-        coords (np.array): 1d array of particle coordinates
-        weights (np.array): 1d array of particle masses
-        box_min (float): Minimum x-coordinate of the box.
-        box_width (float): Width of the box
-
-    """
-    frac_coords = (coords - box_min) / box_width
-    theta = frac_coords * (2 * np.pi) + np.pi
-    xi = np.cos(theta)
-    zeta = np.sin(theta)    
-    xi_bar = np.average(xi,weights=masses)
-    zeta_bar = np.average(zeta,weights=masses)
-    theta_bar = np.arctan2(-zeta_bar, -xi_bar) 
-    return xi_bar, zeta_bar, theta_bar
-
-
-def test_pi_centrer(masses,x_coords, box_min = 0, box_max = 20):
-    """
-    Calculates centre of mass of the given masses and coordinates by the Bai and Breen method, the method given in the paper and then using MDAnalysises unwrapping method that requires 
-    bond information. 
-    
-    Parameters:
-        coords (np.array): 1d array of particle coordinates
-        weights (np.array): 1d array of particle masses
-        box_min (float): Minimum x-coordinate of the box.
-        box_max (float): Maximum x-coordinate of the box.
-
-    """
-
-    box_width = box_max - box_min
-    particles = len(masses)
-
-    yz = np.zeros((2, particles))
-    x_coords = x_coords % 20
-    coords = np.concatenate((x_coords[np.newaxis, :], yz), axis=0).T
-
-
-    u = mda.Universe.empty(particles ,trajectory = True)
-    u.add_TopologyAttr('masses',masses)
-    u.transfer_to_memory()
-    
-    reader = MemoryReader(coords)
-    u.trajectory = reader
-    dim = np.array([box_max, box_max, box_max, 90, 90, 90])
-    transform1 = mda.transformations.boxdimensions.set_dimensions(dim)
-    transform2 = wrap(u.atoms)
-    workflow  = [transform1,transform2]
-    u.trajectory.add_transformations(*workflow)
-
-    u.add_bonds([tuple(range(i, i+2)) for i in range(0, particles-1)])
-
-    u.atoms.unwrap()
-    MDA_com = u.atoms.center_of_mass()[0]
-    com_pi = pi_centrer(coords[:,0], masses,box_min,box_width)
-    corrected_com = (np.average(((coords[:,0] - (com_pi + 0.5*box_width) ) % box_max), weights = masses) + (com_pi + 0.5*box_width)) % box_max
-    wrapped = ((coords[:,0] - (com_pi + 0.5*box_width) ) % box_max)
-
-    return MDA_com, com_pi, corrected_com 
-
+from Functions import pi_centrer, xi_zeta_calc, xi_zeta_bar_calc, test_pi_centrer
+from Variables import * 
 
 # Main
 
@@ -147,14 +41,8 @@ ax1 = fig.add_subplot(gs[0,0])
 # plotting options
 xmin = 4
 xmax = 16
-y1 = 0
-height = 1
-blue_set = 0.5
-l_set = 2
 s_set = 50
-marker_set = 15
-font_size = 7
-cross_size = 1.5
+
 
 # Tick removal, horizontal line plotting
 for x in [ax1]:
