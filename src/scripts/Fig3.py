@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib as matplotlib
 import paths
 
-k = np.load(paths.data / 'Fig3.npy')
+k = np.load(paths.data / 'Fig3.npy', allow_pickle=True)
 
 # Binning Bai and Breen error for visulation 
 N_bins = 100
