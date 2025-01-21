@@ -1,5 +1,5 @@
 dependencies:
-  - numpy=2.2.2
+  - numpy<2
   - conda-forge::pip=21.0.1
   - python=3.10
   - mdanalysis=2.8.0
