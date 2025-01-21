@@ -11,6 +11,7 @@ import matplotlib as matplotlib
 import matplotlib.patches as patches
 from Functions import pi_centrer, xi_zeta_calc, xi_zeta_bar_calc, test_pi_centrer
 from Variables import * 
+import paths
 
 # Main
 
@@ -89,4 +90,5 @@ ax0.scatter(-20,-20, s=s_set, color = '#029E73', marker = 'x', label = 'True COM
 
 
 ax0.spines['top'].set_visible(False)
-plt.show()
+plt.savefig(paths.figures / 'Fig3.pdf')
+plt.close()

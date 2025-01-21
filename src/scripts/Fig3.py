@@ -4,6 +4,7 @@ from tqdm import tqdm
 from scipy.stats import uniform
 import matplotlib as matplotlib
 from Functions import pi_centrer
+import paths
 
 # Main
 m = int(2 ** 24) 
@@ -76,4 +77,4 @@ for i, ci in enumerate(credible_intervals):
 axis.set_xlabel('Asymmetry')
 axis.set_ylabel("Centre of mass error / Span of particles")
 plt.tight_layout()
-plt.show()
+plt.savefig(paths.figures / 'Fig3.pdf')

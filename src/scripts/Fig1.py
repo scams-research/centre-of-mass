@@ -5,7 +5,7 @@ import matplotlib
 from matplotlib.patches import Arc
 from Functions import pi_centrer,test_pi_centrer,xi_zeta_calc,xi_zeta_bar_calc,draw_dashed_box
 from Variables import * 
-
+import paths
 
 
 fig = plt.figure(figsize=(8.06, 8.06/4.6666667))
@@ -165,4 +165,5 @@ ax2.axis('off')
 fig.text(.30, .05, '(a)', ha='center', size = font_size)
 fig.text(.605, .05, '(b)', ha='center', size = font_size)
 fig.text(.818, .05, '(c)', ha='center', size = font_size)
-plt.show()
+plt.savefig(paths.figures / 'Fig3.pdf')
+plt.close()
