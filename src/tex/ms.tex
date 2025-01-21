@@ -83,6 +83,7 @@ Practically speaking, for the majority of simulations, it is most desirable to c
   (b) The problem with the naive centre of mass (red cross) calculation in periodic systems, where the particle group spans a periodic boundary. 
   (c) The projection of the particles in the bottom diagram of (b) onto a circle to find the centre of mass, which minimises the weighted distance to all particles.}
   \label{fig:problems}
+  \script{Fig1.py}
 \end{figure*}
 %
 In a non-periodic system, the identification of the ``correct'' centre of mass of a group of particles, the average position weighted by the masses, is trivial. 
@@ -147,6 +148,7 @@ Similarly, there is no error in one or two particle systems as these are inheren
     \caption{Quantification of the limiting case (bottom), a 3 particle molecule spanning almost exactly half the periodic box, where the solid blue line shows the error in the estimate from the Bai and Breen approach normalised by the span (length) of the molecule.
     This error is shown visually for a single example (top), where the Bai and Breen estimate (orange cross) is not close to the true centre of mass (green cross).}
     \label{fig:error_quantification}
+    \script{Fig2.py}
 \end{figure}
 %
 
@@ -177,7 +179,7 @@ Therefore, for the majority of chemical simulations, this \emph{pseudo}-center o
     For each configuration, the two approaches were used and the asymmetry of the molecule\cite{xioajun_on_1991} was compared to the error in the estimate normalised by the span (length) of the molecule. 
     The results have been binned along the the $x$-axis using 100 bins, spaced evenly on a log scale.}
     \label{fig:method_comparison}
-    \script{Fig3}
+    \script{Fig3.py}
 \end{figure}
 %
 
