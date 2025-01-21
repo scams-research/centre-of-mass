@@ -22,3 +22,4 @@ jobs:
           OVERLEAF_TOKEN: ${{ secrets.OVERLEAF_TOKEN }}
         with:
           showyourwork-spec: git+https://github.com/showyourwork/showyourwork
+          conda-cache-number: 1
