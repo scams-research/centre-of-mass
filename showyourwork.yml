@@ -31,8 +31,16 @@ datasets:
 
 # Custom file dependencies
 dependencies:
+  src/scripts/Fig1.py:
+    - src/scripts/Variables.py
+    - src/scripts/Functions.py
+  src/scripts/Fig2.py:
+    - src/scripts/Variables.py
+    - src/scripts/Functions.py
   src/scripts/Fig3.py:
     - src/data/Fig3.npy
+    - src/scripts/Variables.py
+    - src/scripts/Functions.py
   # src/tex/ms.tex:
   #   - src/tex/stylesheet.tex
 
