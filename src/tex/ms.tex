@@ -65,7 +65,7 @@ Here we discuss this inaccuracy and propose an extension that overcomes it, enab
 \section{Introduction}
 \label{sec:intro}
 
-% The calculation of the centre of mass of a group of particles, such as in a molecule, is important across computational chemistry and physics\cite{zhang_chemically_2024,happel_coordinated_2024,maggi_universality_2021,grillo_molecular_2023,bullerjahn_unwrapping_2023,jaeger-honz_systematic_2024}.
+The calculation of the centre of mass of a group of particles, such as in a molecule, is important across computational chemistry and physics.\cite{zhang_chemically_2024,happel_coordinated_2024,maggi_universality_2021,grillo_molecular_2023,bullerjahn_unwrapping_2023,jaeger-honz_systematic_2024}
 However, for systems with periodic boundary conditions, computing the centre of mass is non-trivial. 
 Any group of particles will have the same number of valid centres of mass---positions in the simulation cell where the weighted relative positions of the masses sum to zero---as the number of particles (\cref{fig:problems}a). 
 However, in the physical sciences, we may be concerned with the centre of mass of a single bonded molecule or a defined group of particles. 
@@ -87,7 +87,7 @@ In a non-periodic system, the identification of the ``correct'' centre of mass o
 However, where the periodic boundary can intersect the particle group, this naive calculation may be ``incorrect'' (\cref{fig:problems}b). 
 This problem can be resolved where bonding or other relational information is present, but this is not always the case for computational simulation trajectories. 
 
-Bai and Breen proposed an elegant algorithm to efficiently compute the minimized periodic distance centre of mass\cite{bai_calculating_2008}, involving the projection of each orthogonal Cartesian dimension onto a circle to find the centre of mass in the periodic space (\cref{fig:problems}c). 
+Bai and Breen proposed an elegant algorithm to efficiently compute the minimized periodic distance centre of mass,\cite{bai_calculating_2008} involving the projection of each orthogonal Cartesian dimension onto a circle to find the centre of mass in the periodic space (\cref{fig:problems}c). 
 However, this approach is approximate and introduces numerical error, regardless of whether particles span the periodic boundary. 
 Here, we propose an extension to the Bai and Breen algorithm removes this numerical error, allowing the correct centre of mass to be found in nearly all practical cases. 
 
@@ -131,7 +131,7 @@ to give the centre of mass position.
 In the case of an orthogonal multi-dimensional system, this method can be repeated independently for each dimension. 
 
 While not discussed in the original work, this method is equivalent to finding the first moment of the Fourier series of the mass density as a function of position (see Appendix \ref{app:math}). 
-This approach is used in signal processing to find the spectral centroid of a signal\cite{tzanetakis_musical_2002}, where it is known that it is affected by noise and asymmetry\cite{teague_robust_2018}.
+This approach is used in signal processing to find the spectral centroid of a signal,\cite{tzanetakis_musical_2002} where it is known that it is affected by noise and asymmetry.\cite{teague_robust_2018}
 Describing an asymmetric function with a single sine wave leads to an incorrect estimate of the spectral centroid, or centre of mass. 
 
 Considering the limiting case of a 3 particle system, in which a central particle is moved between the 2 edge particles.
@@ -163,7 +163,7 @@ If a group of particles spans more than half the size of the periodic box, the o
 
 To demonstrate the effectiveness of our \emph{psuedo}-centre of mass recentering extension, \cref{fig:method_comparison} compares it to the Bai and Breen method.
 To achieve this, we compute the difference between the estimated centre of mass and the true value, as a ratio of the span of the particle group. 
-This error is compared with the asymmetry of the particle mass density in the periodic cell\cite{xioajun_on_1991}.
+This error is compared with the asymmetry of the particle mass density in the periodic cell.\cite{xioajun_on_1991}
 In \cref{fig:method_comparison} as the asymmetry increases, so does the error in the Bai and Breen approach. 
 However, the \emph{psuedo}-centre of mass resampling is not affected in this way. 
 Therefore, for the majority of chemical simulations, this \emph{pseudo}-center of mass recentering extension should be used to ensure accuracy in centre of mass calculation. 
@@ -209,7 +209,7 @@ The data that support the findings of this study are openly available in a GitHu
 \section{Mathematical Equivalency of Bai and Breen and First Moment Methods}
 \label{app:math}
 
-This appendix presents the mathematical equivalency between the Bai and Breen method for calculating the centre of mass, and finding the maximum of the first term of the Fourier series of the mass density as a function of position (known as the first moment method\cite{teague_robust_2018}).
+This appendix presents the mathematical equivalency between the Bai and Breen method for calculating the centre of mass, and finding the maximum of the first term of the Fourier series of the mass density as a function of position, known as the first moment method.\cite{teague_robust_2018}
 
 For a real valued function, the Fourier series can be described as 
 %
