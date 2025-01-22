@@ -9,8 +9,9 @@
   - [x] @arm61
   - [x] @Harry-Rich
   - [x] @jd15489
-- [ ] Send paper to Richard Gowers for comment (@jd15489)
-- [ ] Add scripts and ensure reproducibility (@Harry-Rich)
+- [x] Send paper to Richard Gowers for comment (@jd15489)
+- [x] Add scripts and ensure reproducibility (@Harry-Rich)
+- [ ] Write a nice README, see [msd-errors](https://github.com/arm61/msd-errors/tree/main) as an example
 - [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
 - [x] Include references to `kinisi` in text (@Harry-Rich)
 - [x] Include [CRediT taxonomy](https://credit.niso.org) (@all)
