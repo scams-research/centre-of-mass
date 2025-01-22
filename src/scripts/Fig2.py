@@ -64,8 +64,6 @@ ax1.scatter(coords,np.zeros(particles), s = s_set, color = ['black','black','#01
 ax1.plot(coords,np.zeros(particles), color = 'grey', alpha = 0.8, linewidth = l_set)
 ax1.scatter(MDA_store[20],0, s=s_set, color = '#029E73', marker = 'x', label = 'Naive and Molecule Centre of Mass',zorder=10, alpha=0.8,linewidths=cross_size)
 ax1.scatter(pi_store[20],0, s=s_set, color = '#D55E00', marker = 'x', label = 'Naive and Molecule Centre of Mass',zorder=10, alpha=0.8,linewidths=cross_size)
-ax1.set_yticks([0, 0.1, 0.2, 0.3])
-ax1.set_xticks([0.25, 0.5, 0.75])
 
 ax0 = fig.add_subplot(gs[1,0])
 
@@ -74,6 +72,8 @@ ax0.set_xlabel('Particle coordinates')
 ax0.set_ylabel('Centre of mass error / Span of molecule')
 ax0.set_ylim(0,0.35)
 ax0.set_xlim(0.2,0.8)
+ax0.set_yticks([0, 0.1, 0.2, 0.3])
+ax0.set_xticks([0.25, 0.5, 0.75])
 
 # Demonstration line
 ax1.axvline(xrange[20], ymax = 0.5, color = 'orange', linestyle = 'dashed')
