@@ -38,5 +38,5 @@ for i, ci in enumerate(credible_intervals):
 axis.set_xlabel('Asymmetry')
 axis.set_ylabel("Centre of mass error / Span of particles")
 plt.tight_layout()
-plt.savefig(paths.figures / 'Fig3.pdf')
+plt.savefig(paths.figures / 'Fig3.pdf', bbox_inches='tight', pad_inches = 0))
 plt.close()
