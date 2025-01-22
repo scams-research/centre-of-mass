@@ -21,7 +21,6 @@ for z in range(0,N_bins):
 
 credible_intervals = [[16, 84], [2.5, 97.5], [0.15, 99.85]]
 alpha = [0.6, 0.4, 0.2]
-# matplotlib.rcParams.update({'font.size': 7})
 fig, axis = plt.subplots(figsize = (4.03, 3.3))
 
 axis.plot(k[:, 4], (k[:, 3] - k[:, 2])/k[:,5], label='This Work', color = 'orange',solid_capstyle='round')
@@ -35,7 +34,7 @@ for i, ci in enumerate(credible_intervals):
                     lw=0)
     
 
-axis.set_yticks([-0.1, 0, 0.1])
+axis.set_yticks([-0.08, 0.04, 0, 0.04, 0.08])
 axis.set_xticks([0, 50, 100])
 axis.set_xlabel('Asymmetry')
 axis.set_ylabel("Centre of mass error / Span of particles")
