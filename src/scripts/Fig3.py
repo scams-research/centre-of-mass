@@ -34,7 +34,7 @@ for i, ci in enumerate(credible_intervals):
                     lw=0)
     
 
-axis.set_yticks([-0.08, 0.04, 0, 0.04, 0.08])
+axis.set_yticks([-0.08, -0.04, 0, 0.04, 0.08])
 axis.set_xticks([0, 50, 100])
 axis.set_xlabel('Asymmetry')
 axis.set_ylabel("Centre of mass error / Span of particles")
