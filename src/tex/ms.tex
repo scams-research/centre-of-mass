@@ -163,17 +163,17 @@ If a group of particles spans more than half the size of the periodic box, the o
 
 \section{Method Comparison}
 
-To demonstrate the effectiveness of our \emph{psuedo}-centre of mass recentering extension, \cref{fig:method_comparison} compares it to the Bai and Breen method.
+To demonstrate the effectiveness of our \emph{pseudo}-centre of mass recentering extension, \cref{fig:method_comparison} compares it to the Bai and Breen method.
 To achieve this, we compute the difference between the estimated centre of mass and the true value as a ratio of the span of the particle group. 
 This error is compared with the asymmetry of the particle mass density in the periodic cell.\cite{xioajun_on_1991}
 In \cref{fig:method_comparison}, as the asymmetry increases, so does the error in the Bai and Breen approach. 
-However, the \emph{psuedo}-centre of mass resampling is not affected in this way. 
+However, the \emph{pseudo}-centre of mass resampling is not affected in this way. 
 Therefore, for most chemical simulations, this \emph{pseudo}-center of mass recentering extension should be used to ensure accuracy in the centre of mass calculation. 
 %
 \begin{figure}
     \centering
     \includegraphics[width=8cm]{Fig3.pdf}
-    \caption{Error in Bai and Breen method (blue shading representing 1, 2, and 3$\sigma$ spreads) compared with the \emph{psuedo} centre of mass recentering approach (orange line). 
+    \caption{Error in Bai and Breen method (blue shading representing 1, 2, and 3$\sigma$ spreads) compared with the \emph{pseudo}-centre of mass recentering approach (orange line). 
     $2^{24}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated, with between 3 and 512 particles and a total length of less than half the box. 
     For each configuration, the two approaches were used, and the asymmetry of the particle group\cite{xioajun_on_1991} is compared to the error in the estimate normalised by the span (length) of the particle group. 
     The results were binned along the $x$-axis using 100 bins spaced evenly on a log scale.}
@@ -184,7 +184,7 @@ Therefore, for most chemical simulations, this \emph{pseudo}-center of mass rece
 
 \section{Conclusions}
 
-We have presented the \emph{psuedo}-centre of mass recentering extension to the Bai and Breen approach for determining the centre of mass of a group of particles in a periodic cell. 
+We have presented the \emph{pseudo}-centre of mass recentering extension to the Bai and Breen approach for determining the centre of mass of a group of particles in a periodic cell. 
 Unlike the existing approach, this method has no error, even at very large asymmetry values.
 To enable the use of this approach, we have implemented it in the open-source Python package \textsc{kinisi}\cite{mccluskey_kinisi_2024} and hope that others will consider its use in future. 
 
