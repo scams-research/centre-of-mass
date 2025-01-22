@@ -42,7 +42,8 @@ margin_icons:
     dataset: "0.25,0.25,0.25"
     github: "0.25,0.25,0.25"
     sandbox: "0.25,0.25,0.25"
-
+  horizontal_offset: -4
+  
 verbose: false
 
 version: 0.4.4.dev61+g996cc07
