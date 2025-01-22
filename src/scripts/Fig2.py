@@ -96,7 +96,7 @@ ax0.plot(xrange / 20,
          color='#0173B2',
          solid_capstyle='round')
 ax0.set_xlabel('Particle coordinates')
-ax0.set_ylabel('Centre of mass error / Span of molecule')
+ax0.set_ylabel('Normalised centre of mass error')
 ax0.set_ylim(0, 0.35)
 ax0.set_xlim(0.2, 0.8)
 ax0.set_yticks([0, 0.1, 0.2, 0.3])
