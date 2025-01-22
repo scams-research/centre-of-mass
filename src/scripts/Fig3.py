@@ -21,7 +21,7 @@ for z in range(0,N_bins):
 
 credible_intervals = [[16, 84], [2.5, 97.5], [0.15, 99.85]]
 alpha = [0.6, 0.4, 0.2]
-matplotlib.rcParams.update({'font.size': 7})
+# matplotlib.rcParams.update({'font.size': 7})
 fig, axis = plt.subplots(figsize = (4.03, 3.3))
 
 axis.plot(k[:, 4], (k[:, 3] - k[:, 2])/k[:,5], label='This Work', color = 'orange',solid_capstyle='round')
