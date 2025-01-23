@@ -56,7 +56,7 @@
 \date{\today}
 
 \begin{abstract}
-Calculation of the centre of mass of some species from a periodic cell is an important aspect of chemical and physical simulation. 
+Calculation of the centre of mass of a group of particles in a periodically repeating cell is an important aspect of chemical and physical simulation. 
 One popular approach, described by Bai and Breen, calculates the centre of mass via the projection of the individual particles' coordinates onto a circle.
 This approach, which is mathematically equivalent to finding the first moment of the Fourier series of the mass density, suffers from some numerical error. 
 Here we discuss this inaccuracy and propose an extension that overcomes it, enabling improved accuracy across computational simulation. 
@@ -190,6 +190,12 @@ To enable the use of this approach, we have implemented it in the open-source Py
 
 \begin{acknowledgements}
 We thank Richard Gowers for the insightful discussion that started us down this rabbit hole and for helpful comments on the manuscript.
+We also thank Neil L. Allan for helpful discussions that lead to this work. 
+H.R. acknowledges the Engineering and Physical Sciences Research Council for funding. 
+BP plc is thanked for the financial support of J.D
+through an industrial CASE (ICASE) studentship in partnership
+with the Engineering and Physical Sciences Research Council. 
+ICASE grant reference EP/T51763X/1.
 \end{acknowledgements}
 
 \section*{Conflict of Interest Statement}
