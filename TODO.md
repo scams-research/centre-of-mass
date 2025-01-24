@@ -13,12 +13,12 @@
 - [x] Add scripts and ensure reproducibility (@Harry-Rich)
 - [x] Make clear the generality of the method (@Harry-Rich)
 - [x] Write a nice README, see [msd-errors](https://github.com/arm61/msd-errors/tree/main) as an example
-- [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
+- [x] Add method to `kinisi` (@arm61/@Harry-Rich)
 - [x] Include references to `kinisi` in text (@Harry-Rich)
 - [x] Include [CRediT taxonomy](https://credit.niso.org) (@all)
 - [ ] Final approval of paper:
-  - [ ] @arm61
-  - [ ] @Harry-Rich
+  - [x] @arm61
+  - [x] @Harry-Rich
   - [ ] @jd15489
 - [ ] Ensure that the GitHub repository is ready for release (@arm61/@Harry-Rich)
 - [ ] Make GitHub repository public (@arm61)
