@@ -12,7 +12,7 @@
 - [x] Send paper to Richard Gowers for comment (@jd15489)
 - [x] Add scripts and ensure reproducibility (@Harry-Rich)
 - [ ] Make clear the generality of the method (@Harry-Rich)
-- [ ] Write a nice README, see [msd-errors](https://github.com/arm61/msd-errors/tree/main) as an example
+- [x] Write a nice README, see [msd-errors](https://github.com/arm61/msd-errors/tree/main) as an example
 - [ ] Add method to `kinisi` (@arm61/@Harry-Rich)
 - [x] Include references to `kinisi` in text (@Harry-Rich)
 - [x] Include [CRediT taxonomy](https://credit.niso.org) (@all)
