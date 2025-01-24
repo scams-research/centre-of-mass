@@ -8,8 +8,16 @@ Here we discuss this inaccuracy and propose an extension that overcomes it, enab
 </p>
 
 ---
-
 <p align="center">
+<a href="https://github.com/scams-research/centre-of-mass/actions/workflows/build.yml">
+<img src="https://github.com/scams-research/centre-of-mass/actions/workflows/build.yml/badge.svg" alt="Article status"/>
+</a>
+<a href="https://github.com/scams-research/centre-of-mass/raw/main-pdf/arxiv.tar.gz">
+<img src="https://img.shields.io/badge/article-tarball-blue.svg?style=flat" alt="Article tarball"/>
+</a>
+<a href="https://github.com/scams-research/centre-of-mass/raw/main-pdf/ms.pdf">
+<img src="https://img.shields.io/badge/article-pdf-blue.svg?style=flat" alt="Read the article"/>
+</a>
 <a href="https://arxiv.org/abs/xxxx.xxxxx">
 <img src="https://img.shields.io/badge/arXiv-xxxx.xxxxx-orange.svg"/>
 </a>
