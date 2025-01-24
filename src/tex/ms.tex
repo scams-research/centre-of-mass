@@ -70,8 +70,8 @@ Here we discuss this inaccuracy and propose an extension that overcomes it, enab
 The calculation of the centre of mass of a group of particles, such as in a molecule, is important across computational chemistry and physics.\cite{zhang_chemically_2024,happel_coordinated_2024,maggi_universality_2021,grillo_molecular_2023,bullerjahn_unwrapping_2023,jaeger-honz_systematic_2024}
 However, computing the centre of mass is non-trivial for systems with periodic boundary conditions. 
 Any group of particles will have the same number of valid centres of mass---positions in the simulation cell where the weighted relative positions of the masses sum to zero---as the number of particles (\cref{fig:problems}a). 
-However, in the physical sciences, we may be concerned with the centre of mass of a single bonded molecule or a defined group of particles. 
-For a single bonded molecule, there is only one correct answer for the centre of mass.
+In the physical sciences, we may be concerned with the centre of mass of a single bonded molecule or a defined group of particles.
+For such systems, there is only one correct answer for the centre of mass.
 Practically speaking, for most simulations, it is most desirable to compute the centre of mass that minimises the periodic distance to the measured particles.
 %
 \begin{figure*}
@@ -89,9 +89,9 @@ In a non-periodic system, identifying the ``correct'' centre of mass of a group 
 However, where the periodic boundary can intersect the particle group, this naive calculation may be ``incorrect'' (\cref{fig:problems}b). 
 This problem can be resolved where bonding or other relational information is present, but this is not always the case for computational simulation trajectories. 
 
-Bai and Breen proposed an elegant algorithm to efficiently compute the minimised periodic distance centre of mass,\cite{bai_calculating_2008} involving the projection of each orthogonal Cartesian dimension onto a circle to find the centre of mass in the periodic space (\cref{fig:problems}c). 
+Bai and Breen proposed an elegant algorithm to efficiently estimate the minimised periodic distance centre of mass,\cite{bai_calculating_2008} involving the projection of each orthogonal Cartesian dimension onto a circle to find the centre of mass in the periodic space (\cref{fig:problems}c). 
 However, this approach is approximate and introduces numerical error, regardless of whether particles span the periodic boundary. 
-For the original use case, to allow for the recentering and visualisation of groups of aggregated particles, the method is effective, as numerical accuracy is less important. 
+For the original use case, to allow the recentering and visualisation of groups of aggregated particles, the method is effective, as numerical accuracy is less important. 
 However, within the context of computational chemistry and physics, this is not the case.  
 Here, we propose an extension to the Bai and Breen algorithm that removes this numerical error, allowing the correct centre of mass to be found in nearly all practical cases. 
 
@@ -99,7 +99,7 @@ Here, we propose an extension to the Bai and Breen algorithm that removes this n
 
 To outline the approach of Bai and Breen and the source of the numerical error, we consider a simple one-dimensional periodic system, where the cell ranges from \num{0} to \num{1}. 
 This system is analogous to a fractional coordinate system. 
-A particle group of $N$ particles can be described with two vectors, one for the positions, $\bm{x}$, and another for the masses, $\bm{m}$. 
+A group of $N$ particles can be described with two vectors, one for the positions, $\bm{x}$, and another for the masses, $\bm{m}$. 
 Each particle $i$ is then projected onto the two dimensions of a unit circle, $\bm{\xi}$ and $\bm{\zeta}$, where, 
 %
 \begin{equation}
@@ -112,7 +112,7 @@ and
     \zeta_i = \sin(2\pi x_i).
 \end{equation}
 % 
-The average of the vectors $\bm{\xi}$ and $\bm{\zeta}$ are then found, weighted by the masses;
+The average of the vectors $\bm{\xi}$ and $\bm{\zeta}$ are then found, weighted by the masses of $i$,
 %
 \begin{equation}
     \bar{\xi} = \frac{1}{N}\sum_{i=1}^{N}m_i\xi_i,
@@ -139,7 +139,7 @@ This approach is used in signal processing to find the spectral centroid of a si
 Describing an asymmetric function with a single sine wave leads to an incorrect estimate of the spectral centroid, or centre of mass. 
 
 Considering the limiting case of a 3-particle system, where a central particle is moved between the 2 edge particles.
-The error in the centre of mass varies, reaching its maximum very close to the stationary particles, where the system is most asymmetrical (\cref{fig:error_quantification}). 
+The error in the centre of mass varies, reaching the maximum when the central particle is very close to the stationary particles, where the system is most asymmetrical (\cref{fig:error_quantification}). 
 At the point where the particles are equally distributed, the system is perfectly symmetric, and there is no numerical error in the centre of mass. 
 Similarly, there is no error in one or two particle systems as these are inherently symmetrical. 
 %
@@ -159,7 +159,7 @@ We suggest an extension that removes the error introduced by asymmetry, which in
 The group of particles is repositioned to the middle of the simulation cell using the \emph{pseudo}-centre of mass, such that there is no risk that the group spans a periodic boundary condition. 
 Then, the standard weighted mean may be used to find the centre of mass before restoring this to the original space. 
 
-The use of this recentering assumes that the inaccurate Bai and Breen method can find a centre of mass close enough to the true centre of mass that the recentering will place all particles contiguously in the periodic cell. 
+The use of this recentering assumes that the inaccurate Bai and Breen method finds a centre of mass close enough to the true centre of mass that the recentering will place all particles contiguously in the periodic cell. 
 This assumption holds true for all systems where the particle group is less than half the size of the periodic cell and is often still true unless the system is very asymmetric. 
 If a group of particles spans more than half the size of the periodic box, the only way to guarantee the centre of mass is found accurately is by including bonding or other relational information. 
 
@@ -194,9 +194,7 @@ To enable the use of this approach, we have implemented it in the open-source Py
 We thank Richard Gowers for the insightful discussion that started us down this rabbit hole and for helpful comments on the manuscript.
 We also thank Neil L. Allan for helpful discussions that lead to this work. 
 H.R. acknowledges the Engineering and Physical Sciences Research Council for DTP funding (EP/W524414/1). 
-BP plc is thanked for the financial support of J.D
-through an industrial CASE (ICASE) studentship in partnership
-with the Engineering and Physical Sciences Research Council (EP/T51763X/1).
+BP plc is thanked for the financial support of J.D through an industrial CASE (ICASE) studentship in partnership with the Engineering and Physical Sciences Research Council (EP/T51763X/1).
 \end{acknowledgements}
 
 \section*{Conflict of Interest Statement}
