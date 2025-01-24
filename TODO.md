@@ -16,16 +16,13 @@
 - [x] Add method to `kinisi` (@arm61/@Harry-Rich)
 - [x] Include references to `kinisi` in text (@Harry-Rich)
 - [x] Include [CRediT taxonomy](https://credit.niso.org) (@all)
-- [ ] Final approval of paper:
+- [x] Final approval of paper:
   - [x] @arm61
   - [x] @Harry-Rich
-  - [ ] @jd15489
-- [ ] Ensure that the GitHub repository is ready for release (@arm61/@Harry-Rich)
-- [ ] Make GitHub repository public (@arm61)
+  - [x] @jd15489
+- [x] Ensure that the GitHub repository is ready for release (@arm61/@Harry-Rich)
+- [x] Make GitHub repository public (@arm61)
 - [ ] Article on arXiv (@arm61)
-- [ ] Open PR in `MDAnalysis` (@Harry-Rich)
-- [ ] PR accepted in `MDAnalysis` (@Harry-Rich)
-- [ ] Include references to `MDAnalysis` in text (@Harry-Rich)
 - [x] Put in [JCP Template](https://www.overleaf.com/latex/templates/template-for-submission-to-aip-journals/wdmsvzfjgvyj)
 - [ ] Write cover letter (@arm61)
 - [ ] Submit to journal (@arm61)
