@@ -22,7 +22,7 @@ Here we discuss this inaccuracy and propose an extension that overcomes it, enab
 <img src="https://img.shields.io/badge/arXiv-xxxx.xxxxx-orange.svg"/>
 </a>
 <br><br>
-<a hred= "https://orcid.org/0009-0002-6808-4573">Harry Richardson</a>,
+<a href= "https://orcid.org/0009-0002-6808-4573">Harry Richardson</a>,
 <a href="https://orcid.org/0000-0003-2659-0806">Josh Dunn</a>,
 and 
 <a href="https://orcid.org/0000-0003-3381-5911">Andrew R. McCluskey</a>&ast;<br>
