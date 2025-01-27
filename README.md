@@ -18,8 +18,8 @@ Here we discuss this inaccuracy and propose an extension that overcomes it, enab
 <a href="https://github.com/scams-research/centre-of-mass/raw/main-pdf/ms.pdf">
 <img src="https://img.shields.io/badge/article-pdf-blue.svg?style=flat" alt="Read the article"/>
 </a>
-<a href="https://arxiv.org/abs/xxxx.xxxxx">
-<img src="https://img.shields.io/badge/arXiv-xxxx.xxxxx-orange.svg"/>
+<a href="https://arxiv.org/abs/2501.14578">
+<img src="https://img.shields.io/badge/arXiv-2501.14578-orange.svg"/>
 </a>
 <br><br>
 <a href= "https://orcid.org/0009-0002-6808-4573">Harry Richardson</a>,
