@@ -23,5 +23,5 @@
 - [x] Ensure that the GitHub repository is ready for release (@arm61/@Harry-Rich)
 - [x] Make GitHub repository public (@arm61)
 - [x] Article on arXiv (@arm61)
-- [ ] Write cover letter (@arm61)
+- [x] Write cover letter (@arm61)
 - [ ] Submit to journal (@arm61)
