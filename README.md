@@ -1,10 +1,10 @@
 # On the Estimation of Centre of Mass in Periodic Systems
 
 <p align="justify">
-Calculation of the centre of mass of a group of particles in a periodically repeating cell is an important aspect of chemical and physical simulation. 
-One popular approach, described by Bai and Breen, calculates the centre of mass via the projection of the individual particles' coordinates onto a circle.
+Calculation of the centre of mass of a group of particles in a periodically-repeating cell is an important aspect of chemical and physical simulation. 
+One popular approach calculates the centre of mass via the projection of the individual particles' coordinates onto a circle [Bai & Breen, <i>J. Graph Tools</i>, <b>13</b>(4), 53, (2008)].
 This approach, which is mathematically equivalent to finding the first moment of the Fourier series of the mass density, suffers from some numerical error. 
-Here we discuss this inaccuracy and propose an extension that overcomes it, enabling improved accuracy across computational simulation. 
+Here, we discuss this inaccuracy and propose an extension that overcomes it, enabling improved accuracy across computational simulation. 
 </p>
 
 ---
