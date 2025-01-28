@@ -24,4 +24,4 @@
 - [x] Make GitHub repository public (@arm61)
 - [x] Article on arXiv (@arm61)
 - [x] Write cover letter (@arm61)
-- [ ] Submit to journal (@arm61)
+- [x] Submit to journal (@arm61)
