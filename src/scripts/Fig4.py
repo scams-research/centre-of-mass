@@ -3,6 +3,7 @@ import matplotlib.gridspec as gridspec
 from Functions import test_pi_centrer
 from Variables import blue_set,cross_size,marker_set, font_size, s_set, l_set
 import matplotlib.pyplot as plt
+import paths
 
 
 # Top sub figure
@@ -119,4 +120,5 @@ ax0.scatter(True_com,0, s=s_set, color = '#029E73', marker = 'x', label = 'Naive
 ax1.set_ylabel('Mass density')
 
 
-plt.show()
+plt.savefig(paths.figures / 'Fig4.pdf', bbox_inches='tight', pad_inches=0)
+plt.close()

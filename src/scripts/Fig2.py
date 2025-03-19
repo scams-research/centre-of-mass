@@ -11,6 +11,7 @@ import matplotlib as matplotlib
 import matplotlib.patches as patches
 from Functions import pi_centrer, xi_zeta_calc, xi_zeta_bar_calc, test_pi_centrer
 from Variables import * 
+import paths
 
 # Main
 
@@ -85,8 +86,7 @@ ax0.axvline(xrange[20]/20-0.0013, ymin = (np.abs(pi_store - MDA_store)/10)[20]/0
 ax0.axhline((np.abs(pi_store - MDA_store)/10)[20], xmax = 0.25, color = 'orange', linestyle = 'dashed', label = 'example error')
 ax0.scatter(-20,20, s=s_set, color = 'orange', marker = 'x', label = 'B&B COM',zorder=10, alpha=0.8,linewidths=cross_size)
 ax0.scatter(-20,-20, s=s_set, color = '#029E73', marker = 'x', label = 'True COM',zorder=10, alpha=0.8,linewidths=cross_size)
-
-
-
 ax0.spines['top'].set_visible(False)
-plt.show()
+
+plt.savefig(paths.figures / 'Fig2.pdf', bbox_inches='tight', pad_inches=0)
+plt.close()

@@ -3,6 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from Functions import pi_centrer,frechet_statistic,intrinsic_mean
 from Variables import font_size
+import paths
 
 
 # Main
@@ -39,11 +40,12 @@ credible_intervals = [[16, 84], [2.5, 97.5], [0.15, 99.85]]
 alpha = [0.6, 0.4, 0.2]
 axis.set_aspect('equal')
 axis.scatter(k[:,2],k[:,1],alpha = 0.4, color = '#0173B2', rasterized = True )
-axis.plot(k[:,2],k[:,3]%1, color = 'k') #linewidths = 0.001 )
+axis.plot(k[:,2],k[:,3]%1, color = 'k')
 axis.set_xlabel('Intrinsic mean')
 axis.set_ylabel('Centre of mass')
 axis.set_xlim([0,1])
 axis.set_ylim([0,1])
 
 
-fig.savefig("method valid.pdf", bbox_inches='tight', pad_inches=0)
+plt.savefig(paths.figures / 'Fig3.pdf', bbox_inches='tight', pad_inches=0)
+plt.close()
