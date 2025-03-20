@@ -13,3 +13,7 @@ src/tex/figures/*
 # Miscellaneous
 __pycache__
 *.synctex.gz
+
+# Submission things
+cover-letter*
+reply*
