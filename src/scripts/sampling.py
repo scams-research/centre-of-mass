@@ -14,7 +14,7 @@ for i in tqdm(range(m)):
     rng = np.random.default_rng(i)
     minimum_uniform = rng.uniform(0,1,size=1)
     N = rng.integers(3, 512, size=1)
-    n = rng.uniform(0.1, 0.45, size=1)
+    n = rng.uniform(0.1, 0.59, size=1)
     particles = rng.uniform(minimum_uniform, minimum_uniform + n, size=N)
     y = particles
     particle_span = particles.max() - particles.min()
