@@ -1,12 +1,12 @@
 import numpy as np
 from tqdm import tqdm
 from scipy.stats import uniform
-from Functions import pi_centrer
+from Functions import pi_centrer, intrinsic_mean
 import paths
 
 # Main
 m = int(2**24)
-k = np.zeros((m, 6))
+k = np.zeros((m, 7))
 x_max = 1
 x_min = 0
 
@@ -26,7 +26,7 @@ for i in tqdm(range(m)):
     k[i, 2] = np.average(y)
     offset = (k[i, 1] - ((x_max - x_min) / 2))
     moved = (y_pbc - offset) % (x_max - x_min)
-    k[i, 3] = np.average(moved) + offset
+    k[i, 3] = (np.average(moved) + offset) % 1
     offset = (k[i, 1] - ((x_max - x_min) / 2))
     moved = (y - offset) % (x_max - x_min)
     # aymmetry metric
@@ -37,10 +37,11 @@ for i in tqdm(range(m)):
                                                            2):][::-1]
     k[i, 4] = np.sum(np.abs(asymmetry))
     k[i, 5] = particle_span
+    k[i, 6] = intrinsic_mean(y_pbc,np.ones_like(y_pbc))
 
 # Unwrapping Centre of mass if required to allow for comparison with true Centre of mass
 k[:, 1][np.where(k[:, 1] < (x_max - x_min) * 0.5)] += x_max
 k[:, 2][np.where(k[:, 2] < (x_max - x_min) * 0.5)] += x_max
 k[:, 3][np.where(k[:, 3] < (x_max - x_min) * 0.5)] += x_max
 
-np.savetxt(paths.data / 'Fig5.npy', k)
+np.savetxt(paths.data / 'sampling.txt', k)
