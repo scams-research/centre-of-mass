@@ -5,7 +5,7 @@ from Functions import pi_centrer, intrinsic_mean
 import paths
 
 # Main
-m = int(2**10)
+m = int(2**18)
 k = np.zeros((m, 7))
 x_max = 1
 x_min = 0
@@ -36,10 +36,5 @@ for i in tqdm(range(m)):
     k[i, 4] = np.sum(np.abs(asymmetry))
     k[i, 5] = particle_span
     k[i, 6] = intrinsic_mean(y_pbc,np.ones_like(y_pbc))
-
-# Unwrapping Centre of mass if required to allow for comparison with true Centre of mass
-# k[:, 1][np.where(k[:, 1] < (x_max - x_min) * 0.5)] += x_max
-# k[:, 2][np.where(k[:, 2] < (x_max - x_min) * 0.5)] += x_max
-# k[:, 3][np.where(k[:, 3] < (x_max - x_min) * 0.5)] += x_max
 
 np.savetxt(paths.data / 'sampling.txt', k)

@@ -8,6 +8,11 @@ import paths
 
 k = np.loadtxt(paths.data / 'sampling.txt')
 
+# Unwrapping Centre of mass if required to allow for comparison with true Centre of mass
+k[:, 1][np.where(k[:, 1] < (x_max - x_min) * 0.5)] += x_max
+k[:, 2][np.where(k[:, 2] < (x_max - x_min) * 0.5)] += x_max
+k[:, 3][np.where(k[:, 3] < (x_max - x_min) * 0.5)] += x_max
+
 # Binning Bai and Breen error for visulation 
 N_bins = 100
 bins = np.logspace(-1, 2, N_bins)
