@@ -28,8 +28,8 @@ num_bins = 100
 credible_intervals = [[16, 84], [2.5, 97.5], [0.15, 99.85]]
 
 axis.set_aspect('equal')
-axis.scatter(k[:,2],k[:,1], alpha = 0.4, color = '#0173B2', rasterized = True )
-axis.plot(k[:,2], k[:,3] % 1, color = 'k')
+axis.scatter(k[:, 6], k[:, 1], alpha = 0.4, color = '#0173B2', rasterized = True )
+axis.plot(k[:, 6], k[:, 3], color = 'k')
 axis.set_xlabel('Intrinsic mean')
 axis.set_ylabel('Centre of mass')
 axis.set_xlim([0,1])
