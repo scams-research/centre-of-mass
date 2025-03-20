@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib as matplotlib
+from Variables import font_size
 import paths
 
 k = np.loadtxt(paths.data / 'Fig5.npy')
