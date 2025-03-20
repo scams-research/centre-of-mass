@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib as matplotlib
 import paths
 
-k = np.loadtxt(paths.data / 'Fig3.npy')
+k = np.loadtxt(paths.data / 'Fig5.npy')
 
 # Binning Bai and Breen error for visulation
 N_bins = 100

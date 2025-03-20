@@ -8,6 +8,7 @@ dependencies:
     - src/scripts/Variables.py
     - src/scripts/Functions.py
   src/scripts/Fig3.py:
+    - src/data/Fig5.npy
     - src/scripts/Variables.py
     - src/scripts/Functions.py
   src/scripts/Fig4.py:
