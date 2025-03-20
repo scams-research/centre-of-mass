@@ -89,7 +89,7 @@ ax2.axvline(coords2[1], ymax = 0.5, color = 'orange')
 ax3.axvline(coords2[1], ymin = sine_wave2.max()/1.05, color = 'orange')
 
 peak_x2 = x2[y2 == 1]
-ax3.hist(peak_x2, bins=np.linspace(0, 1, 150), alpha=0.7, edgecolor='black')
+ax3.hist(peak_x2, bins=np.linspace(0, 1, 150), alpha=0.7, )
 
 ax2.scatter(Polar_com2.round(3),0, s=s_set, color = 'orange', marker = 'x', label = 'Naive and Molecule Centre of Mass',zorder=10, alpha=0.8,linewidths=cross_size)
 ax2.scatter(True_com2,0, s=s_set, color = '#029E73', marker = 'x', label = 'Naive and Molecule Centre of Mass',zorder=10, alpha=0.8,linewidths=cross_size)
@@ -113,7 +113,7 @@ ax0.axvline(coords[1], ymax = 0.5, color = 'orange')
 ax1.axvline(coords[1], ymin = sine_wave.max()/1.05, color = 'orange')
 
 peak_x = x[y == 1]
-ax1.hist(peak_x, bins=np.linspace(0, 1, 150), alpha=0.7, edgecolor='black')
+ax1.hist(peak_x, bins=np.linspace(0, 1, 150), alpha=0.7)
 
 ax0.scatter(Polar_com,0, s=s_set, color = 'orange', marker = 'x', label = 'Naive and Molecule Centre of Mass',zorder=10, alpha=0.8,linewidths=cross_size)
 ax0.scatter(True_com,0, s=s_set, color = '#029E73', marker = 'x', label = 'Naive and Molecule Centre of Mass',zorder=10, alpha=0.8,linewidths=cross_size)

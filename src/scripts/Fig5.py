@@ -6,7 +6,7 @@ import matplotlib as matplotlib
 from Functions import pi_centrer
 import paths
 
-k = np.load(paths.data / 'Fig5.npy')
+k = np.load(paths.data / 'Fig5.npy', allow_pickle=True)
 
 # Binning Bai and Breen error for visulation 
 N_bins = 100
