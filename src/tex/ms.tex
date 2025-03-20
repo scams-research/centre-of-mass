@@ -57,9 +57,10 @@
 
 \begin{abstract}
 Calculation of the centre of mass of a group of particles in a periodically-repeating cell is an important aspect of chemical and physical simulation. 
-One popular approach calculates the centre of mass via the projection of the individual particles' coordinates onto a circle [Bai \& Breen, \emph{J. Graph. Tools} \textbf{13}(4), 53, (2008)].
-This approach, which is mathematically equivalent to finding the first moment of the Fourier series of the mass density, suffers from some numerical error. 
-Here, we discuss this inaccuracy and propose an extension that overcomes it, enabling improved accuracy across computational simulation. 
+One popular approach calculates the centre of mass via the projection of the individual particles' coordinates onto a circle [Bai \& Breen, \emph{J. Graph. Tools}, \textbf{13}(4), 53, (2008)].
+However, this approach involves projecting and averaging of the particles in a non-physically meaningful way resulting in inaccurate centre of masses. 
+Instead the intrinsic weighted average should be computed, but the analytical calculation of this scales as $\mathcal{O}(N\log N)$. 
+Here, we propose a more computationally efficient approach to compute the intrinsic mean suitable for the majority of chemical systems. 
 \end{abstract}
 
 \maketitle
@@ -78,26 +79,26 @@ Practically speaking, for most simulations, it is most desirable to compute the 
   \includegraphics[width=\textwidth]{Fig1.pdf}
   \caption{
   (a) Demonstration of the $N$ possible centres of mass in an $N$ particle system, where two periodic cells are visible, and the dashed line indicates the particle grouping that leads to a given centre of mass (cross). 
-  (b) The problem with the naive centre of mass (red cross) calculation in periodic systems, where the particle group spans a periodic boundary. 
-  (c) The projection of the particles in the bottom diagram of (b) onto a circle to find the centre of mass, which minimises the weighted distance to all particles.}
+  (b) The problem with the naïve centre of mass (red cross) calculation in periodic systems, where the particle group spans a periodic boundary. 
+  (c) The projection of the particles in the bottom diagram of (b) onto a circle to find the centre of mass (yellow cross), which minimises the weighted distance to all particles on the planar disk of the circle.}
   \label{fig:problems}
   \script{Fig1.py}
 \end{figure*}
 %
 
 In a non-periodic system, identifying the ``correct'' centre of mass of a group of particles, the average position weighted by the masses, is trivial. 
-However, where the periodic boundary can intersect the particle group, this naive calculation may be ``incorrect'' (\cref{fig:problems}b). 
+However, where the periodic boundary can intersect the particle group, this naïve calculation may be ``incorrect'' (\cref{fig:problems}b). 
 This problem can be resolved where bonding or other relational information is present, but this is not always the case for computational simulation trajectories. 
 
-Bai and Breen proposed an elegant algorithm to efficiently estimate the minimised periodic distance centre of mass,\cite{bai_calculating_2008} involving the projection of each orthogonal Cartesian dimension onto a circle to find the centre of mass in the periodic space (\cref{fig:problems}c). 
-However, this approach is approximate and introduces numerical error, regardless of whether particles span the periodic boundary. 
+Bai and Breen proposed an algorithm to efficiently estimate the centre of mass,\cite{bai_calculating_2008} involving the projection of each orthogonal Cartesian dimension onto a circle to find the centre of mass in the periodic space (\cref{fig:problems}c). 
+However, this approach appears to introduce numerical error when compared to the continuum centre of mass, regardless of whether particles span the periodic boundary. 
 For the original use case, to allow the recentering and visualisation of groups of aggregated particles, the method is effective, as numerical accuracy is less important. 
 However, within the context of computational chemistry and physics, this is not the case.  
-Here, we propose an extension to the Bai and Breen algorithm that removes this numerical error, allowing the correct centre of mass to be found in nearly all practical cases. 
+Here, we discuss the nature of this error, present a general solution with non-linear scaling, and a linear-scaling solution that is accurate for the majority of chemical systems.
 
-\section{Bai and Breen Approach}
+\section{Circular Weighted Average}
 
-To outline the approach of Bai and Breen and the source of the numerical error, we consider a simple one-dimensional periodic system, where the cell ranges from \num{0} to \num{1}. 
+To outline the circular averaging approach from Bai and Breen, known in directional statistics as the extrinsic mean,~\cite{hotz_intrinsic_2011} we consider a simple one-dimensional periodic system, where the cell ranges from \num{0} to \num{1}. 
 This system is analogous to a fractional coordinate system. 
 A group of $N$ particles can be described with two vectors, one for the positions, $\bm{x}$, and another for the masses, $\bm{m}$. 
 Each particle $i$ is then projected onto the two dimensions of a unit circle, $\bm{\xi}$ and $\bm{\zeta}$, where, 
@@ -111,19 +112,19 @@ and
 \begin{equation}
     \zeta_i = \sin(2\pi x_i).
 \end{equation}
-% 
-The average of the vectors $\bm{\xi}$ and $\bm{\zeta}$ are then found, weighted by the masses of $i$,
+The average of the vectors $\bm{\xi}$ and $\bm{\zeta}$ are then found, weighted by the masses, $m$, of $i$,
 %
 \begin{equation}
-    \bar{\xi} = \frac{1}{N}\sum_{i=1}^{N}m_i\xi_i,
+    \bar{\xi} = \frac{\sum_{i=1}^{N}m_i\xi_i}{\sum_{i=1}^{N}m_i},
 \end{equation}
 % 
 and
 %
 \begin{equation}
-    \bar{\zeta} = \frac{1}{N}\sum_{i=1}^{N}m_i\zeta_i.
+    \bar{\zeta} = \frac{\sum_{i=1}^{N}m_i\zeta_i}{\sum_{i=1}^{N}m_i}.
 \end{equation}
 % 
+$\bar{\xi}$ and $\bar{\zeta}$ represent the coordinates of a point on the plane formed by the circle. 
 The projection process is then reversed for the weighted average circular coordinates.
 Practically, this is achieved using the 2-argument arctangent, 
 %
@@ -134,67 +135,90 @@ Practically, this is achieved using the 2-argument arctangent,
 to give the centre of mass position.
 In the case of an orthogonal multi-dimensional system, this method can be repeated independently for each dimension. 
 
-While not discussed in the original work, this method is equivalent to finding the first moment of the Fourier series of the mass density as a function of position (see Appendix \ref{app:math}). 
-This approach is used in signal processing to find the spectral centroid of a signal,\cite{tzanetakis_musical_2002} where it is known that it is affected by noise and asymmetry.\cite{teague_robust_2018}
-Describing an asymmetric function with a single sine wave leads to an incorrect estimate of the spectral centroid, or centre of mass. 
+The approach outlined above provides the average position in a two-dimensional coordinate system, and then projects this onto a position on the circle corresponding to a position in periodic space (\cref{fig:method_comparison}c). 
+However, this projection is from a non-physically meaningful position, i.e., the position does not sit on the manifold of the circle itself.
+The result of using a position on the plane of the circle, rather than the circle itself, is a discrepancy when comparing the circular weighted average centre of mass with that of the system in a non-periodic space. 
 
-Considering the limiting case of a 3-particle system, where a central particle is moved between the 2 edge particles.
-The error in the centre of mass varies, reaching the maximum when the central particle is very close to the stationary particles, where the system is most asymmetrical (\cref{fig:error_quantification}). 
+Consider the limiting case of a 3-particle system, where a central particle is moved between 2 edge particles, which are stationary at coordinates of 0.26 and 0.74. 
+This group of particles does not span the periodic cell and therefore the continuum centre of mass can be computed naïvely as the weighted average of the positions. 
+\cref{fig:error_quantification} presents the difference between the naïve centre of mass and that computed with the circular weighted average approach described above, normalised by the total extent of the group of particles. 
+The error in the circular weighted average varies, reaching a maximum of more than \SI{30}{\percent} of the particle group size when the central particle is very close to the stationary particles, where the system is highly asymmetric. 
 At the point where the particles are equally distributed, the system is perfectly symmetric, and there is no numerical error in the centre of mass. 
-Similarly, there is no error in one or two particle systems as these are inherently symmetrical. 
+Similarly, there is no error in one or two particle systems as these are inherently symmetrical (see Appendices for further discussion of the role of asymmetry). 
 %
 \begin{figure}
     \centering
     \includegraphics[width=8cm]{Fig2.pdf}
-    \caption{Quantification of the limiting case (bottom), a 3-particle group spanning almost exactly half the periodic box, where the solid blue line shows the error in the estimate from the Bai and Breen approach normalised by the span (length) of the particle group.
-    This error is shown visually for a single example (top), where the Bai and Breen estimate (orange cross) is not close to the true centre of mass (green cross).}
+    \caption{Quantification of the limiting case (bottom), a 3-particle group spanning close to half the periodic box, where the solid blue line shows the error between the circular weighted average centre of mass and continuum centre of mass normalised by the span (length) of the particle group.
+    This error is shown visually for a single example (top), where the circular averaged centre of mass (orange cross) is not close to the true centre of mass (green cross).}
     \label{fig:error_quantification}
     \script{Fig2.py}
 \end{figure}
 %
 
+\section{Intrinsic Weighted Average}
+
+The mean of a set of samples is the value that minimises the sum of squared distances between the mean and the samples.~\cite{neilsen_matrix_2012}
+The circular weighted average centre of mass satisfies this criterion by minimising the chordal distance between the points on the planar disk formed by the circle.~\cite{hotz_non-asymptotic_2016}
+However as outlined above, this position is not physically meaningful and requires projection onto the circular manifold, leading to the inconsistency with the continuum centre of mass.
+
+The position that matches the continuum mean of a periodic system is the intrinsic mean, which minimizes the sum of the squared arc distances between the mean and the samples. 
+As all the points exist on the periodic unit circle, all positional information is contained in their angular position. 
+This results in a computationally expensive minimisation problem~\cite{hotz_extrinsic_2013}, for which an analytical solution for the intrinsic mean can be found by producing $N$ candidate means,
+%
+\begin{equation}
+\bar{\theta}_{n} = \bar{\phi} + \frac{n 2\pi}{N}, \quad n = 1, 2, \dots, N.
+\end{equation}
+%
+where $\bar{\phi}$ represents a naïve angular mass-weighted average position for all particles in the group.
+The true intrinsic mean is then the value in the vector, $\bar{\bm{\theta}} = [\bar{\theta}_{1}, \bar{\theta}_{2}, \ldots \bar{\theta}_{n}]$, with the lowest sum of squared arc distances between the points. 
+This is still computationally expensive, scaling as $\mathcal{O}(N\log N)$,~\cite{hotz_intrinsic_2011} but will always produce the true intrinsic mean.
+
+It should be noted that for bonded molecules that span over half the periodic box, the intrinsic and molecular centre of masses are not necessarily the same.
+The molecular centre of mass must be within the molecule even if this is not the minimum of the squared arc distances within the system.
+Therefore, for such systems, bonding information is required to calculate the molecular centre of mass. 
+
 \section{\emph{Pseudo}-Centre of Mass Recentering}
 
-We suggest an extension that removes the error introduced by asymmetry, which involves using the Bai and Breen estimate as a \emph{pseudo}-centre of mass. 
+We propose a computationally cheap approach, with $\mathcal{O}(n)$ scaling, that finds the true continuum centre of mass. 
+This approach involves using the circular weighted averaged centre of mass as a \emph{pseudo}-centre of mass. 
 The group of particles is repositioned to the middle of the simulation cell using the \emph{pseudo}-centre of mass, such that there is no risk that the group spans a periodic boundary condition. 
-Then, the standard weighted mean may be used to find the centre of mass before restoring this to the original space. 
+Then, the standard weighted average may be used to find the centre of mass before restoring this to the original space. 
 
-The use of this recentering assumes that the inaccurate Bai and Breen method finds a centre of mass close enough to the true centre of mass that the recentering will place all particles contiguously in the periodic cell. 
-This assumption holds true for all systems where the particle group is less than half the size of the periodic cell and is often still true unless the system is very asymmetric. 
-If a group of particles spans more than half the size of the periodic box, the only way to guarantee the centre of mass is found accurately is by including bonding or other relational information. 
+The use of this recentering assumes that the circular weighted average centre of mass method finds a value close enough to the true centre of mass that the recentering will place all particles contiguously in the periodic cell. 
+This assumption holds true for all systems where the particle group is less than half the extent of the periodic cell and is often still true unless the system is very asymmetric. 
+If a group of particles spans more than half of the periodic box, the analytic intrinsic weighted average approach should be used. 
 
-\section{Method Comparison}
-
-To demonstrate the effectiveness of our \emph{pseudo}-centre of mass recentering extension, \cref{fig:method_comparison} compares it to the Bai and Breen method.
-To achieve this, we compute the difference between the estimated centre of mass and the true value as a ratio of the span of the particle group. 
-This error is compared with the asymmetry of the particle mass density in the periodic cell.\cite{xioajun_on_1991}
-In \cref{fig:method_comparison}, as the asymmetry increases, so does the error in the Bai and Breen approach. 
-However, the \emph{pseudo}-centre of mass resampling is not affected in this way. 
-Therefore, for most chemical simulations, this \emph{pseudo}-center of mass recentering extension should be used to ensure accuracy in the centre of mass calculation. 
+To demonstrate the effectiveness of our \emph{pseudo}-centre of mass recentering approach, \cref{fig:method_valid} compares it to the intrinsic weighted average centre of mass. 
+As can be seen the pseudo-centre of mass recentering approach produces a perfect estimate of the intrinsic center of mass, provided that particles do not span more half the box. 
+Therefore, for most chemical simulations, this \emph{pseudo}-center of mass recentering approach should be used to ensure accuracy in the centre of mass calculation. 
 %
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{Fig3.pdf}
-    \caption{Error in Bai and Breen method (blue shading representing 1, 2, and 3$\sigma$ spreads) compared with the \emph{pseudo}-centre of mass recentering approach (orange line). 
-    $2^{24}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated, with between 3 and 512 particles and a total length of less than half the box. 
-    For each configuration, the two approaches were used, and the asymmetry of the particle group\cite{xioajun_on_1991} is compared to the error in the estimate normalised by the span (length) of the particle group. 
-    The results were binned along the $x$-axis using 100 bins spaced evenly on a log scale.}
-    \label{fig:method_comparison}
+    \includegraphics[width=8cm]{figures/method valid.pdf}
+    \caption{A comparison of the circular weighted averaged centre of mass method (spread of blue dots) and \emph{pseudo}-centre of mass recentering approach (black line) with the intrinsic weighte average centre of mass. 
+    $2^{19}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated, with between 3 and 512 particles and a total length of less than half the box. 
+    Apparent outliers in the top-left and bottom-right corners are not true outliers, rather, they arise when the intrinsic mean approaches the periodic boundary, the difference in the circular weighted averaging centre of mass causes the point to wrap around to the opposite side of the periodic cell.
+    }
+    \label{fig:method_valid}
     \script{Fig3.py}
 \end{figure}
 %
 
 \section{Conclusions}
 
-We have presented the \emph{pseudo}-centre of mass recentering extension to the Bai and Breen approach for determining the centre of mass of a group of particles in a periodic cell. 
-Unlike the existing approach, this method has no error, even at very large asymmetry values.
+We have discussed the nature of centre of mass computation for periodic chemical simulations.
+We highlighted the problems of computing the circular weighted average centre of mass versus the intrinsic weighted average centre of mass, indicating that the latter matches the continuum centre of mass that is expected. 
+However, computation of intrinsic weighted average centre of mass has non-linear scaling making it computationally inefficient for large systems. 
+To address this, we propose a linear scaling approach based on a \emph{pseudo}-centre of mass recentering that estimates the intrinsic centre of mass in the majority of chemical systems. 
 To enable the use of this approach, we have implemented it in the open-source Python package \textsc{kinisi}\cite{mccluskey_kinisi_2024} and hope that others will consider its use in future. 
 
 \begin{acknowledgements}
 We thank Richard Gowers for the insightful discussion that started us down this rabbit hole and for helpful comments on the manuscript.
 We also thank Neil L. Allan for helpful discussions that lead to this work. 
+We acknowledge Karol Ławniczak's insightful lectures on directional statistics that helped us to better understand this subject.
 H.R. acknowledges the Engineering and Physical Sciences Research Council for DTP funding (EP/W524414/1). 
-BP plc is thanked for the financial support of J.D through an industrial CASE (ICASE) studentship in partnership with the Engineering and Physical Sciences Research Council (EP/T51763X/1).
+BP plc is thanked for the financial support of J.D. through an industrial CASE (ICASE) studentship in partnership with the Engineering and Physical Sciences Research Council (EP/T51763X/1).
 \end{acknowledgements}
 
 \section*{Conflict of Interest Statement}
@@ -202,21 +226,20 @@ BP plc is thanked for the financial support of J.D through an industrial CASE (I
 The authors have no conflicts to disclose.
 
 \section*{Author Contributions}
-CRediT author statement: 
 H.R.: Formal analysis, Investigation, Methodology, Software, Visualisation, Writing – original draft.
 J.D.: Conceptualization, Investigation, Methodology, Supervision, Writing – review \& editing.
 A.R.M.: Formal analysis, Funding acquisition, Investigation, Methodology, Project administration, Supervision, Writing – review \& editing.
 
 \section*{Data Availability}
 
-The data that support the findings of this study are openly available in a GitHub repository\cite{richardson_github_2025}, under an MIT license, including a complete set of analysis/plotting scripts allowing for a fully reproducible and automated analysis workflow, using \textsc{showyourwork}\cite{luger_showyourwork_2021}.
+The data that support the findings of this study are openly available in a GitHub repository,\cite{richardson_github_2025} under an MIT license, including a complete set of analysis/plotting scripts allowing for a fully reproducible and automated analysis workflow, using \textsc{showyourwork}.\cite{luger_showyourwork_2021}
 
 \appendix
 
-\section{Mathematical Equivalency of Bai and Breen and First Moment Methods}
+\section{Mathematical Equivalency of Polar Averaging and First Moment Methods}
 \label{app:math}
 
-This appendix presents the mathematical equivalency between the Bai and Breen method for calculating the centre of mass, and finding the maximum of the first term of the Fourier series of the mass density as a function of position, known as the first moment method.\cite{teague_robust_2018}
+This appendix presents the mathematical equivalency between the circular weighted average approach to compute the centre of mass, and finding the maximum of the first term of the Fourier series of the mass density as a function of position, known as the first moment method.\cite{teague_robust_2018}
 
 For a real-valued function, the Fourier series can be described as 
 %
@@ -253,15 +276,15 @@ and
     b_n = A_n \sin(\varphi_n).
 \end{equation}
 %
-Then $a_n$ and $b_n$ can be considered to be constants that ``weight'' the relative contributions of $\sin \left( 2\pi \dfrac{n}{P} x \right)$ and $\cos \left( 2\pi \dfrac{n}{P} x \right)$, akin to the weighted average of $\bm{\xi}$ and $\bm{\zeta}$ carried out within the B\&B method.
+Then $a_n$ and $b_n$ can be considered to be constants that ``weight'' the relative contributions of $\sin \left( 2\pi \dfrac{n}{P} x \right)$ and $\cos \left( 2\pi \dfrac{n}{P} x \right)$, akin to the weighted average of $\bm{\xi}$ and $\bm{\zeta}$ carried out within the circular weighted average approach.
 
-As stated in the main text, the Bai and Breen method is equivalent to finding the maxima of the first function of the Fourier series, $f_1$,
+As stated in the main text, the circular weighted average approach is equivalent to finding the maxima of the first function of the Fourier series, $f_1$,
 %
 \begin{equation}
     f_1(x) = a_1 \cos{\Big(2\pi\frac{1}{P} x\Big)} + b_1 \sin{\Big(2\pi\frac{1}{P} x\Big)},
 \end{equation} 
 %
-where $P$ is $1$ as the Bai and Breen method projects the full box size onto a single unit circle. 
+where $P$ is $1$ as the circular weighted average approach projects the full box size onto a single unit circle. 
 To maximise the value of $f_1(x)$ a stationary point is found where,
 %
 \begin{equation}
@@ -299,7 +322,43 @@ In terms of periodic position,
     \frac{\text{atan}2(b_1, a_1)}{2\pi} \equiv \frac{\text{atan}2(-b_1, -a_1) + \pi}{2\pi}.
 \end{equation}
 %
-The negative $b_1$ and $a_1$ in the Bai and Breen method ensure that the centre of mass is always in the correct periodic box with no additional wrapping.
+The negative $b_1$ and $a_1$ in the circular weighted average approach ensure that the centre of mass is always in the correct periodic box with no additional wrapping.
+
+\section{Behaviour of Extrinsic Mean With Asymmetry}
+\label{app:fourier}
+
+As described in Appendix~\ref{app:math}, the circular weighted average centre of mass can be interpreted as identifying the maximum of the first term in the Fourier series, the first moment, of the mass density distribution. 
+The first moment is the the peak position of a sine wave with a period of the periodic box length. 
+\cref{fig:sine_wave_assym} shows mass density profiles and corresponding first moment sine waves for two three-particle systems, where it can be seen that the sine wave peak tracks the position of the moving particle. 
+However, this does not accurately represent the intrinsic center of mass, except in the special case where the particles are symmetrically distributed. 
+
+In \cref{fig:sine_wave_assym} we show this sine wave for a system with particles at 0.26, 0.74, 0.34, where it is clear that a single sine wave is not capable of describing this asymmetric function. 
+This is compared with a system where the particles are symmetrically positioned, in which the circular weighted averaging approach accurately estimates the continuum centre of mass. 
+By describing an asymmetric function with a single sine wave, we produce an incorrect estimate of the intrinsic centre of mass. 
+First-moment-based methods such as this are known to be sensitive to asymmetry \cite{teague_robust_2018} as the singular sine wave cannot encode asymmetrical information effectively. 
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{figures/Sine_wave.pdf}
+    \caption{Mass density histograms for two 3 particle molecules, (top) asymmetrically distributed particles [0.26, 0.34, 0.74], (bottom) symmetric molecule [0.26, 0.50, 0.74] (blue bars), and the sine waves produced from the first components of the fourier series (dashed lines). It can be seen in the top image that the asymmetry in the molecule causes the maximum of the sine wave to be a poor estimator of the intrinsic centre of mass. }
+    \label{fig:sine_wave_assym}
+\end{figure}
+%
+
+To validate and visualise the effect of asymmetry on the deviation of the circular weighted averaging centre of mass from the continuum centre of mass, the error—defined as the absolute difference between the intrinsic centre of mass and the circular averaged centre of mass, normalised by the span of the particle group was calculated.
+This error is compared with the asymmetry of the particle mass density \cite{xioajun_on_1991}. 
+In \cref{fig:method_comparison}, as the asymmetry increases, so does the difference between the circular averaged centre of mass and the intrinsic centre of mass. 
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{Fig3.pdf}
+    \caption{Error in circular averaged centre of mass method (blue shading representing 1, 2, and 3$\sigma$ spreads) as a function of asymmetry.
+    $2^{24}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated, with between 3 and 512 particles and a total length of less than half the box. 
+    For each configuration, the two approaches were used, and the asymmetry of the particle group\cite{xioajun_on_1991} is compared to the error in the estimate normalised by the span (length) of the particle group. 
+    The results were binned along the $x$-axis using 100 bins spaced evenly on a log scale.}
+    \label{fig:method_comparison}
+    \script{Fig3.py}
+\end{figure}
 
 \bibliography{bib}
 
