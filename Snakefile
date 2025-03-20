@@ -2,7 +2,7 @@ rule sampling:
     input:
         "src/scripts/sampling.py"
     output:
-        "src/data/Fig3.npy"
+        "src/data/Fig5.npy"
     conda:
         "environment.yml"
     cache: True
