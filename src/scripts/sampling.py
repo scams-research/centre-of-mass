@@ -10,11 +10,9 @@ k = np.zeros((m, 7))
 x_max = 1
 x_min = 0
 
-# Variables to define wrapping
-minimum_uniform = 0.65
-
 for i in tqdm(range(m)):
     rng = np.random.default_rng(i)
+    minimum_uniform = rng.uniform(0,1,size=1)
     N = rng.integers(3, 512, size=1)
     n = rng.uniform(0.1, 0.45, size=1)
     particles = rng.uniform(minimum_uniform, minimum_uniform + n, size=N)
