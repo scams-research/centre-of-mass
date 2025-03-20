@@ -136,19 +136,26 @@ def draw_dashed_box(ax,
         linestyle (str): Style of the dashed lines.
     """
     # Draw the edges of the box
-    ax.plot([x_min, x_max], [y_min, y_min],
-            linestyle=linestyle,
-            color=color,
-            linewidth=linewidth)  # Bottom edge
-    ax.plot([x_min, x_max], [y_max, y_max],
-            linestyle=linestyle,
-            color=color,
-            linewidth=linewidth)  # Top edge
-    ax.plot([x_min, x_min], [y_min, y_max],
-            linestyle=linestyle,
-            color=color,
-            linewidth=linewidth)  # Left edge
-    ax.plot([x_max, x_max], [y_min, y_max],
-            linestyle=linestyle,
-            color=color,
-            linewidth=linewidth)  # Right edge
+    ax.plot([x_min, x_max], [y_min, y_min], linestyle=linestyle, color=color, linewidth = linewidth)  # Bottom edge
+    ax.plot([x_min, x_max], [y_max, y_max], linestyle=linestyle, color=color, linewidth = linewidth)  # Top edge
+    ax.plot([x_min, x_min], [y_min, y_max], linestyle=linestyle, color=color, linewidth = linewidth)  # Left edge
+    ax.plot([x_max, x_max], [y_min, y_max], linestyle=linestyle, color=color, linewidth = linewidth)  # Right edge
+
+
+def frechet_statistic(theta,theta0):
+    return(np.minimum(np.abs(theta-theta0),1-np.abs(theta-theta0)))**2
+
+def intrinsic_mean(coords,masses):
+    """
+    Assumes fractional coords i.e. 0 to 1
+
+    Calculates analytical intrinsic mean via Frechet function minimisation
+
+    """
+    theta = coords #* 2 * np.pi
+    k = np.arange(len(coords))
+    ngon_means  = (np.average(theta,weights=masses) +  k/len(coords)) % 1 
+    frechet_stat = np.array([np.sum(masses*frechet_statistic(means, theta)) for means in ngon_means])
+    intrinsic_center_of_mass = ngon_means[np.where(frechet_stat==frechet_stat.min())]# / (2*np.pi)
+
+    return intrinsic_center_of_mass[0]

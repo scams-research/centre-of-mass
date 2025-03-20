@@ -6,3 +6,4 @@ font_size = 8
 cross_size = 1.5
 marker_set = 15
 l_set = 2
+s_set = 50
