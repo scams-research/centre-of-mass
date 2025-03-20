@@ -19,9 +19,12 @@ for z in range(0, N_bins):
     if length != 0:
         error_bb_array[z, 0:length] = err[np.where(binned_indices == z)[0]]
 
+# Plotting
+matplotlib.rcParams.update({'font.size': font_size})
+fig, axis = plt.subplots(figsize = (4.03, 4.03))
+
 num_bins = 100
 credible_intervals = [[16, 84], [2.5, 97.5], [0.15, 99.85]]
-alpha = [0.6, 0.4, 0.2]
 
 axis.set_aspect('equal')
 axis.scatter(k[:,2],k[:,1],alpha = 0.4, color = '#0173B2', rasterized = True )
