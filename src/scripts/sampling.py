@@ -43,4 +43,4 @@ k[:, 1][np.where(k[:, 1] < (x_max - x_min) * 0.5)] += x_max
 k[:, 2][np.where(k[:, 2] < (x_max - x_min) * 0.5)] += x_max
 k[:, 3][np.where(k[:, 3] < (x_max - x_min) * 0.5)] += x_max
 
-np.savetxt(paths.data / 'Fig3.npy', k)
+np.savetxt(paths.data / 'Fig5.npy', k)
