@@ -21,3 +21,5 @@ axis.set_ylim([0,1])
 
 plt.savefig(paths.figures / 'Fig3.pdf', bbox_inches='tight', pad_inches=0)
 plt.close()
+
+
