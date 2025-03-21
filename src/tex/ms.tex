@@ -158,7 +158,7 @@ Similarly, there is no error in one or two particle systems as these are inheren
 
 \section{Intrinsic Weighted Average}
 
-The mean of a set of samples is the value that minimises the sum of squared distances between the mean and the samples.~\cite{neilsen_matrix_2012}
+The mean of a set of samples is the value that minimises the sum of the squared distances to the samples.~\cite{neilsen_matrix_2012}
 The circular weighted average centre of mass satisfies this criterion by minimising the chordal distance between the points on the planar disk formed by the circle.~\cite{hotz_non-asymptotic_2016}
 However as outlined above, this position is not physically meaningful and requires projection onto the circular manifold, leading to the inconsistency with the continuum centre of mass.
 
@@ -167,11 +167,11 @@ As all the points exist on the periodic unit circle, all positional information 
 This results in a computationally expensive minimisation problem~\cite{hotz_extrinsic_2013}, for which an analytical solution for the intrinsic mean can be found by producing $N$ candidate means,
 %
 \begin{equation}
-\bar{\theta}_{n} = \bar{\phi} + \frac{n 2\pi}{N}, \quad n = 1, 2, \dots, N.
+\bar{x}_{n} = \bar{x}_0 + \frac{n 2\pi}{N}, \quad n = 1, 2, \dots, N.
 \end{equation}
 %
-where $\bar{\phi}$ represents a naïve angular mass-weighted average position for all particles in the group.
-The true intrinsic mean is then the value in the vector, $\bar{\bm{\theta}} = [\bar{\theta}_{1}, \bar{\theta}_{2}, \ldots \bar{\theta}_{n}]$, with the lowest sum of squared arc distances between the points. 
+where $\bar{x}_0$ represents a naïve mass-weighted average position for all particles in the group.
+The true intrinsic mean is then the value in the vector, $\bar{\bm{x}} = [\bar{x}_{1}, \bar{x}_{2}, \ldots \bar{x}_{n}]$, with the lowest sum of squared arc distances between the points. 
 This is still computationally expensive, scaling as $\mathcal{O}(N\log N)$,~\cite{hotz_intrinsic_2011} but will always produce the true intrinsic mean.
 
 It should be noted that for bonded molecules that span over half the periodic box, the intrinsic and molecular centre of masses are not necessarily the same.
@@ -196,7 +196,7 @@ Therefore, for most chemical simulations, this \emph{pseudo}-center of mass rece
 \begin{figure}
     \centering
     \includegraphics[width=8cm]{Fig3.pdf}
-    \caption{A comparison of the circular weighted averaged centre of mass method (spread of blue dots) and \emph{pseudo}-centre of mass recentering approach (black line) with the intrinsic weighte average centre of mass. 
+    \caption{A comparison of the circular weighted averaged centre of mass method (spread of blue dots) and \emph{pseudo}-centre of mass recentering approach (black line) with the intrinsic weighted average centre of mass. 
     $2^{18}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated, with between 3 and 512 particles and a total length of less than half the box. 
     Apparent outliers in the top-left and bottom-right corners are not true outliers, rather, they arise when the intrinsic mean approaches the periodic boundary, the difference in the circular weighted averaging centre of mass causes the point to wrap around to the opposite side of the periodic cell.
     }
@@ -332,7 +332,7 @@ The first moment is the the peak position of a sine wave with a period of the pe
 \cref{fig:sine_wave_assym} shows mass density profiles and corresponding first moment sine waves for two three-particle systems, where it can be seen that the sine wave peak tracks the position of the moving particle. 
 However, this does not accurately represent the intrinsic center of mass, except in the special case where the particles are symmetrically distributed. 
 
-In \cref{fig:sine_wave_assym} we show this sine wave for a system with particles at 0.26, 0.74, 0.34, where it is clear that a single sine wave is not capable of describing this asymmetric function. 
+In \cref{fig:sine_wave_assym}, we show this sine wave for a system with particles at 0.26, 0.74, 0.34, where it is clear that a single sine wave is not capable of describing this asymmetric function. 
 This is compared with a system where the particles are symmetrically positioned, in which the circular weighted averaging approach accurately estimates the continuum centre of mass. 
 By describing an asymmetric function with a single sine wave, we produce an incorrect estimate of the intrinsic centre of mass. 
 First-moment-based methods such as this are known to be sensitive to asymmetry \cite{teague_robust_2018} as the singular sine wave cannot encode asymmetrical information effectively. 
