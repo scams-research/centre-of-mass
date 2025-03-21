@@ -12,7 +12,7 @@ matplotlib.rcParams.update({'font.size': font_size})
 fig, axis = plt.subplots(figsize = (4.03, 4.03))
 
 axis.set_aspect('equal')
-axis.scatter(k[:, 6], k[:, 1], alpha = 0.4, color = '#0173B2')#, rasterized = True )
+axis.scatter(k[:, 6], k[:, 1], alpha = 0.4, color = '#0173B2')
 axis.plot(k[:, 6], k[:, 3], color = 'k')
 axis.set_xlabel('Intrinsic mean')
 axis.set_ylabel('Centre of mass')
