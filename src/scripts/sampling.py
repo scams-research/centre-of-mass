@@ -5,7 +5,7 @@ from Functions import pi_centrer, intrinsic_mean
 import paths
 
 # Main
-m = int(2**16)
+m = int(2**18)
 k = np.zeros((m, 7))
 x_max = 1
 x_min = 0
