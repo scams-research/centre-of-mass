@@ -9,7 +9,7 @@ import paths
 
 matplotlib.rcParams.update({'font.size': font_size})
 
-fig = plt.figure(figsize=(8.06, 3.3))
+fig = plt.figure(figsize=(8.06 / 0.518, 3.3))
 
 # box coordinates and line
 xmin = 0
