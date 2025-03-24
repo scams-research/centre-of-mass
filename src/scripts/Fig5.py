@@ -43,7 +43,7 @@ for i, ci in enumerate(credible_intervals):
     
 
 axis.set_xlabel('Asymmetry')
-axis.set_ylabel("Centre of mass error / Span of particles")
+axis.set_ylabel('Normalised centre of mass error')
 axis.set_yticks([-0.1, 0., 0.1])
 axis.set_xticks([0, 25, 50, 75, 100])
 plt.tight_layout()
