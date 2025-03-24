@@ -14,6 +14,8 @@ import paths
 
 # Main
 
+matplotlib.rcParams.update({'font.size': font_size})
+
 MDA_store = np.zeros(100)
 pi_store = np.zeros(100)
 corrected_store = np.zeros(100)

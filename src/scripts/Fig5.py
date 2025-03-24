@@ -4,7 +4,10 @@ from tqdm import tqdm
 from scipy.stats import uniform
 import matplotlib as matplotlib
 from Functions import pi_centrer
+from Variables import font_size
 import paths
+
+matplotlib.rcParams.update({'font.size': font_size})
 
 k = np.loadtxt(paths.data / 'sampling.txt')
 x_max = 1
@@ -28,7 +31,6 @@ for z in range(0,N_bins):
 
 credible_intervals = [[16, 84], [2.5, 97.5], [0.15, 99.85]]
 alpha = [0.6, 0.4, 0.2]
-matplotlib.rcParams.update({'font.size': 7})
 fig, axis = plt.subplots(figsize = (4.03, 3.3))
 
 for i, ci in enumerate(credible_intervals):

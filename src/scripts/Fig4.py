@@ -1,10 +1,12 @@
 import numpy as np
 import matplotlib.gridspec as gridspec
 from Functions import test_pi_centrer
-from Variables import blue_set,cross_size,marker_set, font_size, s_set, l_set
+from Variables import blue_set,cross_size, font_size, s_set, l_set
 import matplotlib.pyplot as plt
+import matplotlib
 import paths
 
+matplotlib.rcParams.update({'font.size': font_size})
 
 # Top sub figure
 coords = np.array([0.25,0.34,0.75])
