@@ -7,7 +7,8 @@ from Functions import pi_centrer, test_pi_centrer, xi_zeta_calc, xi_zeta_bar_cal
 from Variables import *
 import paths
 
-matplotlib.rcParams.update({'font.size': font_size * 0.518})
+font_size *= 0.518
+matplotlib.rcParams.update({'font.size': font_size})
 
 fig = plt.figure(figsize=(8.06, 8.06 / 4.6666667))
 
