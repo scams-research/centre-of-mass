@@ -7,10 +7,9 @@ from Functions import pi_centrer, test_pi_centrer, xi_zeta_calc, xi_zeta_bar_cal
 from Variables import *
 import paths
 
-font_size *= 0.518
 matplotlib.rcParams.update({'font.size': font_size})
 
-fig = plt.figure(figsize=(8.06, 8.06 / 4.6666667))
+fig = plt.figure(figsize=(8.06 / 0.518, 3.3))
 
 # box coordinates and line
 xmin = 0
