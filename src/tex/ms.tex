@@ -73,7 +73,7 @@ However, computing the centre of mass is non-trivial for systems with periodic b
 Any group of particles will have the same number of valid centres of mass---positions in the simulation cell where the weighted relative positions of the masses sum to zero---as the number of particles (\cref{fig:problems}a). 
 In the physical sciences, we may be concerned with the centre of mass of a single bonded molecule or a defined group of particles.
 For such systems, there is only one correct answer for the centre of mass.
-Practically speaking, for most simulations, it is most desirable to compute the centre of mass that minimises the periodic distance to the measured particles.
+Practically speaking, for most simulations, it is desirable to compute the centre of mass that minimises the squared periodic distance to the measured particles (Euclidean or \( L^2 \) norm ).
 %
 \begin{figure*}
   \includegraphics[width=\textwidth]{Fig1.pdf}
@@ -143,7 +143,7 @@ Consider the limiting case of a 3-particle system, where a central particle is m
 This group of particles does not span the periodic cell and therefore the continuum centre of mass can be computed naïvely as the weighted average of the positions. 
 \cref{fig:error_quantification} presents the difference between the naïve centre of mass and that computed with the circular weighted average approach described above, normalised by the total extent of the group of particles. 
 The error in the circular weighted average varies, reaching a maximum of more than \SI{30}{\percent} of the particle group size when the central particle is very close to the stationary particles, where the system is highly asymmetric. 
-At the point where the particles are equally distributed, the system is perfectly symmetric, and there is no numerical error in the centre of mass. 
+At the point where the particles are equally distributed, the system is perfectly symmetric, and there is no error in the centre of mass. 
 Similarly, there is no error in one or two particle systems as these are inherently symmetrical (see Appendices for further discussion of the role of asymmetry). 
 %
 \begin{figure}
@@ -172,7 +172,7 @@ This results in a computationally expensive minimisation problem~\cite{hotz_extr
 %
 where $\bar{x}_0$ represents a naïve mass-weighted average position for all particles in the group.
 The true intrinsic mean is then the value in the vector, $\bar{\bm{x}} = [\bar{x}_{1}, \bar{x}_{2}, \ldots \bar{x}_{n}]$, with the lowest sum of squared arc distances between the points. 
-This is still computationally expensive, scaling as $\mathcal{O}(N\log N)$,~\cite{hotz_intrinsic_2011} but will always produce the true intrinsic mean.
+This is still computationally expensive, scaling as $\mathcal{O}(N\log N)$,~\cite{hotz_extrinsic_2013} but will always produce the true intrinsic mean.
 
 It should be noted that for bonded molecules that span over half the periodic box, the intrinsic and molecular centre of masses are not necessarily the same.
 The molecular centre of mass must be within the molecule even if this is not the minimum of the squared arc distances within the system.
