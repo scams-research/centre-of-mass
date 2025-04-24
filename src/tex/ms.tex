@@ -72,7 +72,7 @@ The calculation of the centre of mass of a group of particles, such as in a mole
 However, computing the centre of mass is non-trivial for systems with periodic boundary conditions. 
 Any group of particles will have the same number of valid centres of mass---positions in the simulation cell where the weighted relative positions of the masses sum to zero---as the number of particles (\cref{fig:problems}a). 
 Computing the centre of mass will typically form part of some analysis that is performed after the simulation has been run. 
-Therefore, the simulation trajectory may involve large numbers of molecules or long trajectories, leading to a large number of individual centre of mass calculations, and efficient computation and low computational overhead is of high importance. 
+Therefore, the simulation trajectory may involve large numbers of molecules or long trajectories, leading to a large number of individual centre of mass calculations. As such, efficient computation and low computational overhead is of high importance. 
 
 In the physical sciences, we may be concerned with the centre of mass of a single bonded molecule or a defined group of particles.
 For such systems, there is only one correct answer for the centre of mass.
@@ -360,7 +360,7 @@ In \cref{fig:method_comparison}, as the asymmetry increases, so does the differe
     \centering
     \includegraphics[width=8cm]{Fig5.pdf}
     \caption{Error in circular averaged centre of mass method (blue shading representing 1, 2, and 3$\sigma$ spreads) as a function of asymmetry.
-    $2^{18}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated (the same samples as in \cref{fig:method_valid}, with between 3 and 512 particles and a total length of less than half the box. 
+    $2^{18}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated (the same samples as in \cref{fig:method_valid}, with between 3 and 512 particles and a total length of less than half the box). 
     For each configuration, the two approaches were used, and the asymmetry of the particle group\cite{xioajun_on_1991} is compared to the error in the estimate normalised by the span (length) of the particle group. 
     The results were binned along the $x$-axis using 100 bins spaced evenly on a log scale.}
     \label{fig:method_comparison}
