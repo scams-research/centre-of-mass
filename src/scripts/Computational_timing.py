@@ -6,6 +6,7 @@ from geomstats.learning.frechet_mean import CircleMean
 
 from Functions import pi_centrer,geom_stats_intrinsic
 from Variables import font_size
+import paths
 
 times_pi = []
 ms = np.array([2**i for i in range(14, 25)])
@@ -45,5 +46,5 @@ for m in ms:
 
 time_array[:,1] = times_frech
 
-np.savetxt('comp_time.txt',time_array)
-np.savetxt('ms.txt',ms)
+np.savetxt(paths.data / 'comp_time.txt',time_array)
+np.savetxt(paths.data / 'ms.txt',ms)
