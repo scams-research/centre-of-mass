@@ -4,8 +4,6 @@ import MDAnalysis as mda
 from MDAnalysis.coordinates.memory import MemoryReader
 from MDAnalysis.transformations import wrap 
 from MDAnalysis.transformations.boxdimensions import set_dimensions
-from geomstats.learning.frechet_mean import CircleMean
-from geomstats.geometry.hypersphere import Hypersphere
 
 def pi_centrer(coords,weights,box_min, box_width):
     """
