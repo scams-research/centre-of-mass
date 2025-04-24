@@ -1,5 +1,9 @@
+"""
+To re run the computational timing for your own machine, install the geomstats package
+via pip and run this script from the top directory of the git repository.
+"""
+
 import numpy as np
-from tqdm import tqdm
 import time
 from geomstats.geometry.hypersphere import Hypersphere
 from geomstats.learning.frechet_mean import CircleMean
@@ -17,7 +21,7 @@ z = CircleMean(space=circle)
 
 
 times_pi = []
-for m in tqdm(ms):
+for m in ms:
     start = time.time()
     for i in range(m):
         rng = np.random.default_rng(i)
