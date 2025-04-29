@@ -2,7 +2,7 @@
 
 <p align="justify">
 Calculation of the centre of mass of a group of particles in a periodically-repeating cell is an important aspect of chemical and physical simulation. 
-One popular approach calculates the centre of mass via the projection of the individual particles' coordinates onto a circle [Bai \& Breen, <i>J. Graph. Tools</i>, <b>13</b>(4), 53, (2008)].
+One popular approach calculates the centre of mass via the projection of the individual particles' coordinates onto a circle [Bai & Breen, <i>J. Graph. Tools</i>, <b>13</b>(4), 53, (2008)].
 However, this approach involves averaging of the particles in a non-physically meaningful way resulting in inaccurate centres of mass. 
 Instead the intrinsic weighted average should be computed, but the analytical calculation of this is computationally expensive and complex. 
 Here, we propose a more computationally efficient approach to compute the intrinsic mean suitable for the majority of chemical systems. 
