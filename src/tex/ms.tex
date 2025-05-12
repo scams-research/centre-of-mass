@@ -60,7 +60,7 @@ Calculation of the centre of mass of a group of particles in a periodically-repe
 One popular approach calculates the centre of mass via the projection of the individual particles' coordinates onto a circle [Bai \& Breen, \emph{J. Graph. Tools}, \textbf{13}(4), 53, (2008)].
 However, this approach involves averaging of the particles in a non-physically meaningful way resulting in inaccurate centres of mass. 
 Instead the intrinsic weighted average should be computed, but the analytical calculation of this is computationally expensive and complex. 
-Here, we propose a more computationally efficient approach to compute the intrinsic mean suitable for the majority of chemical systems. 
+Here, we propose a more computationally efficient approach to compute the intrinsic mean that is suitable for the majority of chemical systems. 
 \end{abstract}
 
 \maketitle
@@ -101,7 +101,7 @@ Here, we discuss the nature of this error, present a general solution, and an op
 
 \section{Circular Weighted Average}
 
-To outline the circular averaging approach from Bai and Breen, known in directional statistics as the extrinsic mean,~\cite{hotz_intrinsic_2014} we consider a simple one-dimensional periodic system, where the cell ranges from \num{0} to \num{1}. 
+To outline the circular averaging approach from Bai and Breen, known in directional statistics as the extrinsic mean,\cite{hotz_intrinsic_2014} we consider a simple one-dimensional periodic system, where the cell ranges from \num{0} to \num{1}. 
 This system is analogous to a fractional coordinate system. 
 A group of $N$ particles can be described with two vectors, one for the positions, $\bm{x}$, and another for the masses, $\bm{m}$. 
 Each particle $i$ is then projected onto the two dimensions of a unit circle, $\bm{\xi}$ and $\bm{\zeta}$, where, 
@@ -161,22 +161,22 @@ Similarly, there is no error in one or two particle systems as these are inheren
 
 \section{Intrinsic Weighted Average}
 
-The mean of a set of samples is the value that minimises the sum of the squared distances to the samples.~\cite{neilsen_matrix_2012}
-The circular weighted average centre of mass satisfies this criterion by minimising the chordal distance between the points on the planar disk formed by the circle.~\cite{hotz_non-asymptotic_2016}
+The mean of a set of samples is the value that minimises the sum of the squared distances to the samples.\cite{neilsen_matrix_2012}
+The circular weighted average centre of mass satisfies this criterion by minimising the chordal distance between the points on the planar disk formed by the circle.\cite{hotz_non-asymptotic_2016}
 However as outlined above, this position is not physically meaningful and requires projection onto the circular manifold, leading to the inconsistency with the continuum centre of mass.
 
 The position that matches the continuum mean of a periodic system is the intrinsic mean, which minimizes the sum of the squared arc distances between the mean and the samples. 
 As all the points exist on the periodic unit circle, all positional information is contained in their angular position. 
-This results in a computationally expensive minimisation problem~\cite{hotz_extrinsic_2013}, for which an analytical solution for the intrinsic mean can be found by producing $N$ candidate means,
+This results in a computationally expensive minimisation problem,\cite{hotz_extrinsic_2013} for which an analytical solution for the intrinsic mean can be found by producing $N$ candidate means,
 %
 \begin{equation}
-\bar{x}_{n} = \bar{x}_0 + \frac{n 2\pi}{N}, \quad n = 1, 2, \dots, N,
+\bar{x}_{n} = \bar{x}_0 + \frac{2\pi n}{N}, \quad n = 1, 2, \dots, N,
 \end{equation}
 %
 where $\bar{x}_0$ represents a naïve mass-weighted average position for all particles in the group.
 The true intrinsic mean is then the value in the vector, $\bar{\bm{x}} = [\bar{x}_{1}, \bar{x}_{2}, \ldots \bar{x}_{n}]$, with the lowest sum of squared arc distances between the points.
 The method above will always produce the true intrinsic mean and, therefore, the correct continuum centre of mass. 
-However, this approach has a high computational complexity and even an optimised approach is still computationally expensive with $\mathcal{O}(N\log N)$ scaling due to the need to sort the particle positions.~\cite{hotz_extrinsic_2013,miolane_geomstats_2020}.
+However, this approach has a high computational complexity and even an optimised approach is still computationally expensive with $\mathcal{O}(N\log N)$ scaling due to the need to sort the particle positions.~\cite{hotz_extrinsic_2013,miolane_geomstats_2020}
 
 It should be noted that for bonded molecules that span over half the periodic box, the intrinsic and molecular centre of masses are not necessarily the same.
 The molecular centre of mass must be within the molecule even if this is not the minimum of the squared arc distances within the system.
@@ -193,7 +193,7 @@ The use of this recentering assumes that the circular weighted average centre of
 This assumption holds true for all systems where the particle group is less than half the extent of the periodic cell and is often still true unless the system is very asymmetric. 
 If a group of particles spans more than half of the periodic box, the analytic intrinsic weighted average approach should be used. 
 
-To demonstrate the effectiveness of our \emph{pseudo}-centre of mass recentering approach, \cref{fig:method_valid} compares it to the intrinsic weighted average centre of mass. 
+To demonstrate the effectiveness of our \emph{pseudo}-centre of mass recentering approach, \cref{fig:method_valid} compares it to the circular weighted average centre of mass. 
 As can be seen the pseudo-centre of mass recentering approach produces a accurate estimate of the intrinsic center of mass, provided that particles do not span more half the box. 
 Therefore, for most chemical simulations, this \emph{pseudo}-center of mass recentering approach should be used to ensure accuracy in the centre of mass calculation. 
 %
@@ -214,7 +214,7 @@ Therefore, for most chemical simulations, this \emph{pseudo}-center of mass rece
 We have discussed the nature of centre of mass computation for periodic chemical simulations.
 We highlighted the problems of computing the circular weighted average centre of mass versus the intrinsic weighted average centre of mass, indicating that the latter matches the continuum centre of mass that is expected. 
 However, computation of intrinsic weighted average centre of mass is computationally complex and may be inefficient for the analysis of large trajectories. 
-To address this, we propose an efficient approach based on a \emph{pseudo}-centre of mass recentering that estimates the intrinsic centre of mass in the majority of chemical systems. 
+To address this, we propose an efficient approach based on a \emph{pseudo}-centre of mass recentering that finds the intrinsic centre of mass in the majority of chemical systems. 
 To enable the use of this approach, we have implemented it in the open-source Python package \textsc{kinisi}\cite{mccluskey_kinisi_2024} and hope that others will consider its use in future. 
 
 \begin{acknowledgements}
@@ -341,7 +341,7 @@ This is compared with a system where the particles are symmetrically positioned,
 By describing an asymmetric function with a single sine wave, we produce an incorrect estimate of the intrinsic centre of mass. 
 In this system, the extrinsic centre of mass will always be the position of the central particle, as the outer particles are almost exactly opposite each other on the circular manifold.
 Therefore, when projected onto the circular plane, the extrinsic centre of mass of the outer particles cancel each other out, leaving the total extrinsic centre of mass to be determined by the central particle. 
-First-moment-based methods such as this are known to be sensitive to asymmetry \cite{teague_robust_2018} as a single sine wave cannot encode asymmetrical information effectively. 
+First-moment-based methods such as this are known to be sensitive to asymmetry~\cite{teague_robust_2018} as a single sine wave cannot encode asymmetrical information effectively. 
 %
 \begin{figure}
     \centering
@@ -353,7 +353,7 @@ First-moment-based methods such as this are known to be sensitive to asymmetry \
 %
 
 To validate and visualise the effect of asymmetry on the deviation of the circular weighted averaging centre of mass from the continuum centre of mass, the error—defined as the absolute difference between the intrinsic centre of mass and the circular averaged centre of mass, normalised by the span of the particle group was calculated.
-This error is compared with the asymmetry of the particle mass density \cite{xioajun_on_1991}. 
+This error is compared with the asymmetry of the particle mass density.\cite{xioajun_on_1991}
 In \cref{fig:method_comparison}, as the asymmetry increases, so does the difference between the circular averaged centre of mass and the intrinsic centre of mass. 
 %
 \begin{figure}
@@ -361,7 +361,7 @@ In \cref{fig:method_comparison}, as the asymmetry increases, so does the differe
     \includegraphics[width=8cm]{Fig5.pdf}
     \caption{Error in circular averaged centre of mass method (blue shading representing 1, 2, and 3$\sigma$ spreads) as a function of asymmetry.
     $2^{18}$ random configurations of one-dimensional periodic boundary-spanning particle groups were generated (the same samples as in \cref{fig:method_valid}, with between 3 and 512 particles and a total length of less than half the box). 
-    For each configuration, the two approaches were used, and the asymmetry of the particle group\cite{xioajun_on_1991} is compared to the error in the estimate normalised by the span (length) of the particle group. 
+    For each configuration, the two approaches were used, and the asymmetry of the particle group~\cite{xioajun_on_1991} is compared to the error in the estimate normalised by the span (length) of the particle group. 
     The results were binned along the $x$-axis using 100 bins spaced evenly on a log scale.}
     \label{fig:method_comparison}
     \script{Fig5.py}
@@ -374,8 +374,8 @@ The computational cost of centre of mass calculation is an important factor to a
 Large simulations may involve many thousands or millions of particles over as many frames~\cite{lu_pflops_2021,stevens_molecular_2023} resulting in a very large number of calculations of the centre of mass of a particle group.
 As such, it is valuable to compare the computational efficiency of the two algorithms. 
 
-With regards to computational scaling, the rate limiting step of the intrinsic centre of mass calculation, as implemented in \textsc{geomstats}~\cite{miolane_geomstats_2020}, is the sorting of the particle positions. 
-Sorting algorithms are well documented to scale, at best, as $\mathcal{O}[N log(N)]$~\cite{knuth_sorting_1998}, where $N$ is the number of particles in the group.
+With regards to computational scaling, the rate limiting step of the intrinsic centre of mass calculation, as implemented in \textsc{geomstats},\cite{miolane_geomstats_2020} is the sorting of the particle positions. 
+Sorting algorithms are well documented to scale, at best, as $\mathcal{O}[N log(N)]$,\cite{knuth_sorting_1998} where $N$ is the number of particles in the group.
 Meanwhile, all steps in our \emph{pseudo}-centre of mass recentering algorithm scale as $\mathcal{O}(N)$. 
 
 However, in reality, computational scaling with the number of particles is not of great importance, as typical analyses would involve many small calculations of the centre of mass, such that constant computational overheads will dominate. 
