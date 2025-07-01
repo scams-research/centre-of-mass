@@ -22,6 +22,9 @@ Here, we propose a more computationally efficient approach to compute the intrin
 <a href="https://arxiv.org/abs/2501.14578">
 <img src="https://img.shields.io/badge/arXiv-2501.14578-orange.svg"/>
 </a>
+<a href="https://doi.org/10.1063/5.0260928">
+<img src="https://img.shields.io/badge/publication%20DOI-10.1063/5.0260928-yellow.svg?style=flat"/>
+</a>
 <br><br>
 <a href= "https://orcid.org/0009-0002-6808-4573">Harry Richardson</a>,
 <a href="https://orcid.org/0000-0003-2659-0806">Josh Dunn</a>,
